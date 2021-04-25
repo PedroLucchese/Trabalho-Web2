@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login</title>
+  <title>Home</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
             <a class="nav-link" href="login.html">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cadastro_conta.html">Cadastrar Conta</a>
+            <a class="nav-link" href="cadastro_conta.html">Contas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cadastro_prod.html">Cadastrar Produtos</a>
@@ -47,9 +47,23 @@
             <a class="nav-link" href="cadastro_fornec.html">Cadastrar Fornecedores</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="manut_estoque.html">Manutenção de estoque</a>
+            <a class="nav-link" href="manut_estoque.html">Consulta e manutenção</a>
+          </li>
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
+                <span class="">Usuário Admin</span>
+                <img style="height: 30px;" class="img-profile rounded-circle"src="img/undraw_profile.svg">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    Sair
+                </a>
+            </div>
           </li>
         </ul>
+
+        
       </div>
     </div>
   </nav>
@@ -59,7 +73,6 @@
       <div class="container">
         <h1 class="masthead-heading mb-0">Submarino</h1>
         <h2 class="masthead-subheading mb-0">Todo dia ofertas arrasadoras, você não vai querer perder!</h2>
-        <a href="/login.html" class="btn btn-primary btn-xl rounded-pill mt-5">Ainda não tem uma conta? Cadastre-se</a>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>

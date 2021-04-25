@@ -71,16 +71,20 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4">Escolha uma opção abaixo:</h2>
+            <h2 class="display-4">Faça a manutenção do estoque abaixo:</h2>
           </div>
           <form>
             <div class="form-group">
-              <a href="cria_conta.html"><button style="margin-left:47px" type="button" class="btn btn-primary nav-link">Cadastrar Conta</button></a>
-              <hr>
-              <a href="altera_conta.html"><button style="margin-left:47px" type="button" class="btn btn-primary nav-link">Alterar Conta</button></a>
-              <hr>
-              <a href="exclui_conta.html"><button style="margin-left:47px" type="button" class="btn btn-primary nav-link">Excluir Conta</button></a>
-              
+              <labelstyle="margin-left:47px">Digite o código do produto:</label>
+              <input style="margin-left:47px" type="number" class="form-control" id="cod_produto" name="cod_produto">
+            </div>
+            <div class="form-group">
+              <label style="margin-left:47px">Digite a quantidade que tem em estoque:</label>
+              <input style="margin-left:47px" type="number" class="form-control" id="quant_produto" name="quant_produto">
+            </div>
+            <div class="form-group">
+              <button style="margin-left:47px" type="submit" class="btn btn-primary">Atualizar</button>
+              <button type="reset" class="btn btn-primary">Limpar</button>
             </div>
             <br>
           </form>

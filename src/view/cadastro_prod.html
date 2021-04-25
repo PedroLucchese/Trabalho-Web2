@@ -38,7 +38,7 @@
             <a class="nav-link" href="login.html">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cadastro_conta.html">Cadastrar Conta</a>
+            <a class="nav-link" href="cadastro_conta.html">Contas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cadastro_prod.html">Cadastrar Produtos</a>
@@ -47,7 +47,7 @@
             <a class="nav-link" href="cadastro_fornec.html">Cadastrar Fornecedores</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="manut_estoque.html">Manutenção de estoque</a>
+            <a class="nav-link" href="manut_estoque.html">Consulta e manutenção</a>
           </li>
         </ul>
       </div>
@@ -75,20 +75,23 @@
           </div>
           <form>
             <div class="form-group">
-              <label for="exampleInputEmail1" style="margin-left:47px">Código do produto</label>
-              <input style="margin-left:47px" type="number" class="form-control" id="codigo_produto" name="codigo_produto" aria-describedby="emailHelp">
+              <label style="margin-left:47px">Código do produto</label>
+              <input style="margin-left:47px" type="number" class="form-control" id="cod_produto" name="cod_produto">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1" style="margin-left:47px">Nome do produto</label>
-              <input style="margin-left:47px" type="text" class="form-control" id="nome_produto" name="nome_produto" aria-describedby="emailHelp">
+              <label style="margin-left:47px">Nome do produto</label>
+              <input style="margin-left:47px" type="text" class="form-control" id="nome_produto" name="nome_produto">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1" style="margin-left:47px">Descrição do produto</label>
-              <input style="margin-left:47px" type="text" class="form-control" id="desc_produto" name="desc_produto" aria-describedby="emailHelp">
+              <label style="margin-left:47px">Descrição do produto</label>
+              <input style="margin-left:47px" type="text" class="form-control" id="desc_produto" name="desc_produto">
             </div>
             <div class="form-group">
-              <button style="margin-left:47px" type="button" class="btn btn-primary">Anexar Imagem</button>
-              <button type="submit" class="btn btn-primary">Cadastrar</button>
+              <label style="margin-left:47px">Fornecedor</label>
+              <input style="margin-left:47px" type="text" class="form-control" id="fornecedor" name="fornecedor" >
+            </div>
+            <div class="form-group">
+              <button style="margin-left:47px" type="submit" class="btn btn-primary">Cadastrar</button>
               <button type="reset" class="btn btn-primary">Limpar</button>
             </div>
             <br>
