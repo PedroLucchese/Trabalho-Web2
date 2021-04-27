@@ -16,7 +16,7 @@ $email = mysqli_real_escape_string($link, $_REQUEST["fornec_email"]);
 $telefone = mysqli_real_escape_string($link, $_REQUEST["fornec_tel"]);
 
 if (empty($nome) || empty($descricao) || empty($email) || empty($telefone)){
-    echo "<script type=\"text/javascript\">alert('Voce nao preencheu todos os campos, verifique novamente!')</script>"; // redirecionamento nao ta funcionando, ajeitar isto.
+    echo "<script type=\"text/javascript\">alert('Voce nao preencheu todos os campos, verifique novamente!')</script>";
     exit;
 }
 
@@ -29,9 +29,10 @@ $sql = "INSERT INTO fornecedor VALUES (
 
 )";
 if(mysqli_query($link, $sql)){
-echo "Records added successfully.";
+    echo "<script type=\"text/javascript\">alert('Fornecedor cadastrado com sucesso')</script>"; 
+    echo "<a href='/Trabalho-Web2/src/view/index.html'>Volar a pagina principal</a>";
 } else{
-echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
 
 

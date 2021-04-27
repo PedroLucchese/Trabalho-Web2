@@ -21,10 +21,10 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
         $stmt->bindParam(":email", $usuario->getEmail());
         $stmt->bindParam(":senha", $usuario->getSenha());
         $stmt->bindParam(":telefone", $usuario->getTelefone());
-        $stmt->bindParam(":cartao", $usuario->getCartao());
-        $stmt->bindParam(":titular", $usuario->getTitular());
-        $stmt->bindParam(":cvv", $usuario->getCvv());
-        $stmt->bindParam(":validade", $usuario->getValidade());
+        $stmt->bindParam(":cartao", $usuario->getNumCartao());
+        $stmt->bindParam(":titular", $usuario->getTitularCartao());
+        $stmt->bindParam(":cvv", $usuario->getCvvCartao());
+        $stmt->bindParam(":validade", $usuario->getValCartao());
         $stmt->bindParam(":tipo", $usuario->getTipo());
 
         if($stmt->execute()){

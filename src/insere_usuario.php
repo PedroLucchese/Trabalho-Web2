@@ -1,29 +1,49 @@
 <?php
-include_once "fachada.php";
+// include_once "fachada.php";
 
-$nome = isset($_POST["nome"]) ? addslashes(trim($_POST["nome"])) : FALSE;
-$senha = isset($_POST["senha"]) ? addslashes(trim($_POST["senha"])) : FALSE;
-$senhaConf = isset($_POST["senhaConf"]) ? addslashes(trim($_POST["senhaConf"])) : FALSE;
-$email = isset($_POST["email"]) ? addslashes(trim($_POST["email"])) : FALSE;
-$telefone = isset($_POST["telefone"]) ? addslashes(trim($_POST["telefone"])) : FALSE;
-$cartaoCredito = isset($_POST["cartaoCredito"]) ? addslashes(trim($_POST["cartaoCredito"])) : FALSE;
+// Tentativa de conexão do servidor MySQL. Supondo que você esteja executando o MySQL
+$link = mysqli_connect("localhost", "root", "", "db_loja");
 
-if (empty($nome) || empty($senha) || empty($senhaConf) || empty($email) || empty($telefone) || empty($cartaoCredito)){
-    echo "<script type=\"text/javascript\">alert('Voce nao preencheu todos os campos, verifique novamente!')</script>"; // <-- redirecionamento nao ta funcionando, ajeitar isto.
-    exit;
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
-if (strcmp($senha, $senhaConf)) {
-    echo "<script type=\"text/javascript\">alert('As senhas nao estao iguais, verifique novamente!')</script>";
-    header("../novousuario.php"); // <-- redirecionamento nao ta funcionando, ajeitar isto.
-    exit;
+$nome = mysqli_real_escape_string($link, $_REQUEST['cadastro_nome']);
+$cpf = mysqli_real_escape_string($link, $_REQUEST['cadastro_cpf']);
+$email = mysqli_real_escape_string($link, $_REQUEST ["cadastro_email"]);
+$senha = mysqli_real_escape_string($link, $_REQUEST["cadastro_senha"]);
+$telefone = mysqli_real_escape_string($link, $_REQUEST["cadastro_telefone"]);
+$numCartao =mysqli_real_escape_string($link, $_REQUEST["cadastro_cartao"]);
+$titularCartao = mysqli_real_escape_string($link, $_REQUEST["nome_titular"]);
+$cvvCartao = mysqli_real_escape_string($link, $_REQUEST["cadastro_cvv"]);
+$valCartao = mysqli_real_escape_string($link, $_REQUEST["data_vencimento"]);
+$tipoUsuario = 1;
+
+if (empty($nome) || empty($cpf) || empty($email) || empty($senha) || empty($telefone) || empty($numCartao) || empty($titularCartao) || empty($cvvCartao) || empty($valCartao)){
+  echo "<script type=\"text/javascript\">alert('Voce nao preencheu todos os campos, verifique novamente!')</script>"; // <-- redirecionamento nao ta funcionando, ajeitar isto.
+  echo "<a href='/Trabalho-Web2/src/view/cria_conta.html'>Voltar ao cadastro</a>";
+  exit;
 }
 
-$usuario = new Usuario(null, $senha, $nome, $telefone, $email, $cartaoCredito);
-$dao = $factory->getUsuarioDao();
-$dao->insere($usuario);
-
-header("../usuarios.php");
-exit;
+$sql = "INSERT INTO cliente VALUES (
+                                        null,
+                                        '$nome',
+                                        '$email',
+                                        '$telefone',
+                                        '$senha',
+                                        '$tipoUsuario',
+                                        '$numCartao',
+                                        '$cvvCartao',
+                                        '$titularCartao',
+                                        '$valCartao',
+                                        '$cpf'
+                                    )";
+if(mysqli_query($link, $sql)){
+    echo "<script type=\"text/javascript\">alert('Cadastro realizado com sucesso')</script>"; 
+    echo "<a href='/Trabalho-Web2/src/view/index.html'>Volar a pagina principal</a>";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
 
 ?>

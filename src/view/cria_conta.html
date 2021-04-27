@@ -73,18 +73,22 @@
           <div class="p-5">
             <h2 class="display-4">Faça o cadastro abaixo:</h2>
           </div>
-          <form>
+          <form action="../insere_usuario.php" method="POST" role="form">
             <div class="form-group">
               <label style="margin-left:47px">Nome</label>
               <input style="margin-left:47px" type="text" class="form-control" id="cadastro_nome" name="cadastro_nome">
             </div>
             <div class="form-group">
-              <label style="margin-left:47px">CPF</label>
-              <input style="margin-left:47px" type="number" class="form-control" id="cadastro_cpf" name="cadastro_cpf">
-            </div>
-            <div class="form-group">
               <label style="margin-left:47px">Endereço de email</label>
               <input style="margin-left:47px" type="email" class="form-control" id="cadastro_email" name="cadastro_email">
+            </div>
+            <div class="form-group">
+              <label style="margin-left:47px" for="exampleInputPassword1">Senha</label>
+              <input style="margin-left:47px" type="password" class="form-control" id="cadastro_senha" name="cadastro_senha">
+            </div>
+            <div class="form-group">
+              <label style="margin-left:47px">CPF</label>
+              <input style="margin-left:47px" type="number" class="form-control" id="cadastro_cpf" name="cadastro_cpf">
             </div>
             <div class="form-group">
               <label style="margin-left:47px">Telefone</label>
@@ -95,20 +99,16 @@
               <input style="margin-left:47px" type="text" class="form-control" id="cadastro_cartao" name="cadastro_cartao">
             </div>
             <div class="form-group">
+              <label style="margin-left:47px">Nome do Titular</label>
+              <input style="margin-left:47px" type="text" class="form-control" id="nome_titular" name="nome_titular">
+            </div>
+            <div class="form-group">
               <label style="margin-left:47px">CVV</label>
               <input style="margin-left:47px" type="text" class="form-control" id="cadastro_cvv" name="cadastro_cvv">
             </div>
             <div class="form-group">
               <label style="margin-left:47px">Data de vencimento</label>
               <input style="margin-left:47px" type="text" class="form-control" id="data_vencimento" name="data_vencimento">
-            </div>
-            <div class="form-group">
-              <label style="margin-left:47px">Nome do Titular</label>
-              <input style="margin-left:47px" type="text" class="form-control" id="nome_titular" name="nome_titular">
-            </div>
-            <div class="form-group">
-              <label style="margin-left:47px" for="exampleInputPassword1">Senha</label>
-              <input style="margin-left:47px" type="password" class="form-control" id="cadastro_senha" name="cadastro_senha">
             </div>
             <div class="form-group">
               <button style="margin-left:47px" type="submit" class="btn btn-primary">Cadastrar</button>

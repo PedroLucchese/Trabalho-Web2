@@ -73,10 +73,14 @@
           <div class="p-5">
             <h2 class="display-4">Faça o cadastro do fornecedor abaixo::</h2>
           </div>
-          <form>
+          <form action="../insere_fornecedor.php" method="POST" role="form">
             <div class="form-group">
               <label style="margin-left:47px">Nome do fornecedor</label>
               <input style="margin-left:47px" type="text" class="form-control" id="fornec_nome" name="fornec_nome">
+            </div>
+            <div class="form-group">
+              <label style="margin-left:47px">Descrição</label>
+              <input style="margin-left:47px" type="text" class="form-control" id="fornec_desc" name="fornec_desc">
             </div>
             <div class="form-group">
               <label style="margin-left:47px">Telefone</label>
