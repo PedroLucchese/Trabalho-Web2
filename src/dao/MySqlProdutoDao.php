@@ -10,8 +10,8 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
     public function insere($produto) {
 
         $query = "INSERT INTO " . $this->table_name .
-        " (nome, descricao, idFornecedor) VALUES" . //Adicionar a parte do foto = :foto quando for o momento.
-        " (:nome, :descricao, :idFornecedor)";
+        " (NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO) VALUES" . //Adicionar foto = :foto na T2
+        " (:nome, :descricao, :idFornecedor, :codigo)";
 
         $stmt = $this->conn->prepare($query);
 
@@ -19,7 +19,8 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $stmt->bindParam(":nome", $produto->getNome());
         $stmt->bindParam(":descricao", $produto->getDescricao());
         $stmt->bindParam(":idFornecedor", $produto->getIdFornecedor());
-        // $stmt->bindParam(":foto", $produto->getFoto());
+        $stmt->bindParam(":codigo", $produto->getCodProduto());
+
 
         if($stmt->execute()){
             return true;
@@ -31,7 +32,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
     public function removePorId($id) {
         $query = "DELETE FROM " . $this->table_name .
-        " WHERE id = :id";
+        " WHERE ID_PRODUTO = :id";
 
         $stmt = $this->conn->prepare($query);
 
@@ -53,8 +54,8 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
     public function altera(&$produto) {
 
         $query = "UPDATE " . $this->table_name .
-        " SET nome = :nome, descricao = :descricao, idFornecedor = :idFornecedor" . //Adicionar a parte do foto = :foto quando for o momento.
-        " WHERE id = :id";
+        " SET NOME = :nome, PRODUTO_DESCRICAO = :descricao, ID_FORNECEDOR = :idFornecedor, COD_PRODUTO = :codigo" . 
+        " WHERE ID_PRODUTO = :id";
 
         $stmt = $this->conn->prepare($query);
 
@@ -62,7 +63,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $stmt->bindParam(":nome", $produto->getNome());
         $stmt->bindParam(":descricao", $produto->getDescricao());
         $stmt->bindParam(":idFornecedor", $produto->getIdFornecedor());
-        // $stmt->bindParam(":foto", $produto->getFoto());
+        $stmt->bindParam(":codigo", $produto->getCodProduto());
         $stmt->bindParam(':id', $produto->getId());
 
         // execute the query
@@ -78,11 +79,11 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $produto = null;
 
         $query = "SELECT
-                    id, nome, descricao, idFornecedor/*, foto*/
+                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    id = ?
+                    ID_PRODUTO = ?
                 LIMIT
                     1 OFFSET 0";
 
@@ -92,7 +93,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $produto = new Produto($row['id'],$row['nome'], $row['descricao'], $row['idFornecedor']/*, $row['foto']*/);
+            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO']);
         }
 
         return $produto;
@@ -103,11 +104,11 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $produto = null;
 
         $query = "SELECT
-                    id, nome, descricao, idFornecedor/*, foto */
+                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    nome CONTAINING(?)
+                    NOME CONTAINING(?)
                 LIMIT
                     1 OFFSET 0";
 
@@ -117,7 +118,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $produto = new Produto($row['id'],$row['nome'], $row['descricao'], $row['idFornecedor']/*, $row['foto']*/);
+            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO']);
         }
 
         return $produto;
@@ -128,21 +129,21 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $produto = null;
 
         $query = "SELECT
-                    id, nome, descricao, idFornecedor/*, foto*/
+                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    descricao CONTAINING(?)
+                    PRODUTO_DESCRICAO CONTAINING(?)
                 LIMIT
                     1 OFFSET 0";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $nome);
+        $stmt->bindParam(1, $descricao);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $produto = new Produto($row['id'],$row['nome'], $row['descricao'], $row['idFornecedor']/*, $row['foto']*/);
+            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO']);
         }
 
         return $produto;
@@ -153,17 +154,17 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $produto = array();
 
         $query = "SELECT
-                    id, nome, descricao, idFornecedor/*, foto*/
+                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO
                 FROM
                     " . $this->table_name .
-                    " ORDER BY id ASC";
+                    " ORDER BY ID_PRODUTO ASC";
 
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
-            $produto[] = new Produto($row['id'],$row['nome'], $row['descricao'], $row['idFornecedor']/*, $row['foto']*/);
+            $produto[] = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO']);
         }
 
         return $produto;

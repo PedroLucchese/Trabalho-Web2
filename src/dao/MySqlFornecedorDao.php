@@ -122,6 +122,31 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
         return $fornecedor;
     }
 
+    public function buscaPorDescricao($descricao) {
+        
+        $fornecedor = null;
+
+        $query = "SELECT
+                    ID_FORNECEDOR, NOME_FORNECEDOR, DESCRICAO, TELEFONE, EMAIL
+                FROM
+                    " . $this->table_name . "
+                WHERE
+                    DESCRICAO CONTAINING(?)
+                LIMIT
+                    1 OFFSET 0";
+
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(1, $descricao);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($row) {
+            $fornecedor = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME_FORNECEDOR'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
+        }
+
+        return $fornecedor;
+    }
+
     public function buscaTodos() {
 
         $fornecedor = array();

@@ -1,13 +1,13 @@
 <?php
 interface ProdutoDao {
 
-    public function insere($usuario);
-    public function remove($usuario);
+    public function insere($produto);
+    public function remove($produto);
     public function removePorId($id);
-    public function altera(&$usuario);
+    public function altera(&$produto);
     public function buscaPorId($id);
     public function buscaPorNome($nome);
-    public function buscaPorDescricao($descricao);
+    //public function buscaPorCod($codigo);
     public function buscaTodos();
 }
 ?>
