@@ -43,7 +43,7 @@ CREATE TABLE `endereco` (
 
 CREATE TABLE `fornecedor` (
   `ID_FORNECEDOR` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ID FORNECEDOR',
-  `NOME_FORNECEDOR` varchar(100) NOT NULL COMMENT 'Nome Fornecedor',
+  `NOME` varchar(100) NOT NULL COMMENT 'Nome Fornecedor',
   `DESCRICAO` varchar(50) NOT NULL COMMENT 'Descrição de o que o fornecedor faz',
   `TELEFONE` varchar(11) NOT NULL COMMENT 'TELEFONE',
   `EMAIL` varchar(25) NOT NULL COMMENT 'EMAIL',

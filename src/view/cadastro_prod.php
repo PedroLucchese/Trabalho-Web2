@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Home</title>
+  <title>Login</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,21 +49,7 @@
           <li class="nav-item">
             <a class="nav-link" href="manut_estoque.html">Consulta e manutenção</a>
           </li>
-          <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                <span class="">Usuário Admin</span>
-                <img style="height: 30px;" class="img-profile rounded-circle"src="img/undraw_profile.svg">
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> 
-                    Sair <!-- Habilitar Logout aqui -->
-                </a>
-            </div>
-          </li>
         </ul>
-
-        
       </div>
     </div>
   </nav>
@@ -72,7 +58,6 @@
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">Submarino</h1>
-        <h2 class="masthead-subheading mb-0">Todo dia ofertas arrasadoras, você não vai querer perder!</h2>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -84,53 +69,49 @@
   <section>
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-6 order-lg-2">
-          <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/liquidificador.jpg" alt="">
-          </div>
-        </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4">Liquidificador Mondial Turbo Power</h2>
-            <p>Conheça o liquidificador da Mondial L-99 WB Turbo Power. Além de moderno e elegante na linda cor preta, ele conta com um novo sistema de encaixe pra deixar a montagem mais prática e fácil. Olha, o copo está super-resistente e transparente pra deixar os ingredientes mais visíveis. Sua capacidade total é de até 2,2 litros. </p>
+            <h2 class="display-4">Faça o cadastro do produto abaixo:</h2>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <form action="../insere_produto.php" method="POST" role="form">
+            <div class="form-group">
+              <label style="margin-left:47px">Código do produto</label>
+              <input style="margin-left:47px" type="number" class="form-control" id="cod_produto" name="cod_produto">
+            </div>
+            <div class="form-group">
+              <label style="margin-left:47px">Nome do produto</label>
+              <input style="margin-left:47px" type="text" class="form-control" id="nome_produto" name="nome_produto">
+            </div>
+            <div class="form-group">
+              <label style="margin-left:47px">Descrição do produto</label>
+              <input style="margin-left:47px" type="text" class="form-control" id="desc_produto" name="desc_produto">
+            </div>
+            <div class="form-group">
+              <label style="margin-left:47px" for="Fornecedor">Selecione um fornecedor:</label>
+                                    <select  name="Fornecedor" id="Fornecedor">
+                                        <?php
+                                            
+                                            include_once "../fachada.php";
 
-  <section>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/cadeira.jpg" alt="">
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="p-5">
-            <h2 class="display-4">Cadeira Gamer MX5 Giratoria</h2>
-            <p>A nova linha de Cadeira Gamer Mymax, são as mais iradas do mercado, a MX5 possui design ergonômico e revestimento em couro.
-              Projetada para proporcionar conforto mesmo após horas jogando. </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+                                            $dao = $factory->getFornecedorDao();
+                                            $fornecedores = $dao->buscaTodos();
 
-  <section>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 order-lg-2">
-          <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/batedeira.jpg" alt="">
-          </div>
-        </div>
-        <div class="col-lg-6 order-lg-1">
-          <div class="p-5">
-            <h2 class="display-4">Batedeira Prática 350W, 127V, Preta, Mondial - B-12-NP</h2>
-            <p>350W de potência: Muito mais potência para melhor resultado de suas receitas do dia a dia. Tigela grande de 3, 6 l: Prepara receitas com grande quantidade de ingredientes.</p>
-          </div>
+                                            if ($fornecedores)
+                                            {
+                                                foreach ($fornecedores as $fornecedor)
+                                                {
+                                                    echo "<option value=\"" . $fornecedor->getId() . "\">" . $fornecedor->getNome() . "</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+            </div>
+            <div class="form-group">
+              <button style="margin-left:47px" type="submit" class="btn btn-primary">Cadastrar</button>
+              <button type="reset" class="btn btn-primary">Limpar</button>
+            </div>
+            <br>
+          </form>
         </div>
       </div>
     </div>
@@ -139,7 +120,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-black">
     <div class="container">
-      <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white small">Copyright &copy; Submarino 2021</p>
     </div>
     <!-- /.container -->
   </footer>

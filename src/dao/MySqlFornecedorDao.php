@@ -10,7 +10,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
     public function insere($fornecedor) {
 
         $query = "INSERT INTO " . $this->table_name .
-        " (NOME_FORNECEDOR, DESCRICAO, TELEFONE, EMAIL) VALUES" .
+        " (NOME, DESCRICAO, TELEFONE, EMAIL) VALUES" .
         " (:nome, :descricao, :telefone, :email)";
 
         $stmt = $this->conn->prepare($query);
@@ -53,7 +53,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
     public function altera(&$fornecedor) {
 
         $query = "UPDATE " . $this->table_name .
-        " SET NOME_FORNECEDOR = :nome, DESCRICAO = :descricao, TELEFONE = :telefone, EMAIL = :email" .
+        " SET NOME = :nome, DESCRICAO = :descricao, TELEFONE = :telefone, EMAIL = :email" .
         " WHERE ID_FORNECEDOR = :id";
 
         $stmt = $this->conn->prepare($query);
@@ -78,7 +78,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
         $fornecedor = null;
 
         $query = "SELECT
-                    ID_FORNECEDOR, NOME_FORNECEDOR, DESCRICAO, TELEFONE, EMAIL
+                    ID_FORNECEDOR, NOME, DESCRICAO, TELEFONE, EMAIL
                 FROM
                     " . $this->table_name . "
                 WHERE
@@ -92,7 +92,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $fornecedor = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME_FORNECEDOR'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
+            $fornecedor = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
         }
 
         return $fornecedor;
@@ -103,11 +103,11 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
         $fornecedor = null;
 
         $query = "SELECT
-                    ID_FORNECEDOR, NOME_FORNECEDOR, DESCRICAO, TELEFONE, EMAIL
+                    ID_FORNECEDOR, NOME, DESCRICAO, TELEFONE, EMAIL
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    NOME_FORNECEDOR CONTAINING(?)
+                    NOME CONTAINING(?)
                 LIMIT
                     1 OFFSET 0";
 
@@ -117,7 +117,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $fornecedor = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME_FORNECEDOR'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
+            $fornecedor = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
         }
 
         return $fornecedor;
@@ -128,7 +128,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
         $fornecedor = null;
 
         $query = "SELECT
-                    ID_FORNECEDOR, NOME_FORNECEDOR, DESCRICAO, TELEFONE, EMAIL
+                    ID_FORNECEDOR, NOME, DESCRICAO, TELEFONE, EMAIL
                 FROM
                     " . $this->table_name . "
                 WHERE
@@ -142,7 +142,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $fornecedor = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME_FORNECEDOR'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
+            $fornecedor = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
         }
 
         return $fornecedor;
@@ -153,7 +153,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
         $fornecedor = array();
 
         $query = "SELECT
-                    ID_FORNECEDOR, NOME_FORNECEDOR, DESCRICAO, TELEFONE, EMAIL
+                    ID_FORNECEDOR, NOME, DESCRICAO, TELEFONE, EMAIL
                 FROM
                     " . $this->table_name .
                     " ORDER BY ID_FORNECEDOR ASC";
@@ -163,7 +163,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
-            $fornecedor[] = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME_FORNECEDOR'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
+            $fornecedor[] = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
         }
 
         return $fornecedor;

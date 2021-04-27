@@ -10,8 +10,8 @@ class Fornecedor {
     public function __construct( $id, $nome, $descricao, $telefone, $email)
     {
         $this->id=$id;
-        $this->descricao=$descricao;
         $this->nome=$nome;
+        $this->descricao=$descricao;
         $this->telefone=$telefone;
         $this->email=$email;
     }
