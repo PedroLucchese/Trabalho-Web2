@@ -17,15 +17,16 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
 
         // bind values
         $stmt->bindParam(":nome", $usuario->getNome());
-        $stmt->bindParam(":cpf", $usuario->getCpf());
         $stmt->bindParam(":email", $usuario->getEmail());
-        $stmt->bindParam(":senha", $usuario->getSenha());
         $stmt->bindParam(":telefone", $usuario->getTelefone());
-        $stmt->bindParam(":cartao", $usuario->getNumCartao());
-        $stmt->bindParam(":titular", $usuario->getTitularCartao());
-        $stmt->bindParam(":cvv", $usuario->getCvvCartao());
-        $stmt->bindParam(":validade", $usuario->getValCartao());
+        $stmt->bindParam(":senha", $usuario->getSenha());
         $stmt->bindParam(":tipo", $usuario->getTipo());
+        $stmt->bindParam(":cartao", $usuario->getNumCartao());
+        $stmt->bindParam(":cvv", $usuario->getCvvCartao());
+        $stmt->bindParam(":titular", $usuario->getTitularCartao());
+        $stmt->bindParam(":validade", $usuario->getValCartao());
+        $stmt->bindParam(":cpf", $usuario->getCpf());
+        
 
         if($stmt->execute()){
             return true;
@@ -132,6 +133,32 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
 
         return $usuario;
     }
+
+    public function buscaPorEmail($email) {
+
+        $usuario = null;
+
+        $query = "SELECT
+                    ID_USUARIO, NOME, EMAIL, TELEFONE, SENHA, TIPO_USUARIO, NUM_CARTAO_CREDITO, CVV_CARTAO, NOME_TITULAR_CARTAO, DATA_VENCIMENTO_CARTAO, CPF
+                FROM
+                    " . $this->table_name . "
+                WHERE
+                    EMAIL = ?
+                LIMIT
+                    1 OFFSET 0";
+
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(1, $email);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($row) {
+            $usuario = new Usuario($row['ID_USUARIO'],$row['NOME'], $row['EMAIL'], $row['TELEFONE'], $row['SENHA'], $row['TIPO_USUARIO'], $row['NUM_CARTAO_CREDITO'], $row['CVV_CARTAO'], $row['NOME_TITULAR_CARTAO'], $row['DATA_VENCIMENTO_CARTAO'], $row['CPF']);
+        }
+
+        return $usuario;
+    }
+
 
     public function buscaTodos() {
 
