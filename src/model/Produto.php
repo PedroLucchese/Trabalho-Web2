@@ -6,7 +6,6 @@ class Produto {
     private $descricao;
     private $idFornecedor;
     private $codigo;
-    // private $foto;
 
     public function __construct( $id, $nome, $descricao, $idFornecedor, $codigo)
     {

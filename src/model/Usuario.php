@@ -3,37 +3,63 @@ class Usuario {
     
     private $id;
     private $nome;
-    private $senha;
-    private $telefone;
     private $email;
-    private $cartaoCredito;
+    private $telefone;
+    private $senha;
+    private $tipo;
+    private $numCartao;
+    private $cvvCartao;
+    private $titularCartao;
+    private $valCartao;
+    private $cpf;
 
-    public function __construct( $id, $senha, $nome, $telefone, $email, $cartaoCredito)
+    public function __construct( $id, $nome, $email, $telefone, $senha, $tipo, $numCartao, $cvvCartao, $titularCartao, $valCartao, $cpf)
     {
         $this->id=$id;
-        $this->senha=$senha;
         $this->nome=$nome;
-        $this->telefone=$telefone;
         $this->email=$email;
-        $this->cartaoCredito=$cartaoCredito;
+        $this->telefone=$telefone;
+        $this->senha=$senha;
+        $this->tipo=$tipo;
+        $this->numCartao=$numCartao;
+        $this->cvvCartao=$cvvCartao;
+        $this->titularCartao=$titularCartao;
+        $this->valCartao=$valCartao;
+        $this->cpf=$cpf;
+        
     }
 
     public function getId() { return $this->id; }
     public function setId($id) {$this->id = $id;}
 
-    public function getTelefone() { return $this->telefone; }
-    public function setTelefone($telefone) {$this->telefone = $telefone;}
-
     public function getNome() { return $this->nome; }
     public function setNome($nome) {$this->nome = $nome;}
-
-    public function getSenha() { return $this->senha; }
-    public function setSenha($senha) {$this->senha = $senha;}
 
     public function getEmail() { return $this->email; }
     public function setEmail($email) {$this->email = $email;}
 
-    public function getCartaoCredito() { return $this->cartaoCredito; }
-    public function setCartaoCredito($cartaoCredito) {$this->cartaoCredito = $cartaoCredito;}
+    public function getTelefone() { return $this->telefone; }
+    public function setTelefone($telefone) {$this->telefone = $telefone;}
+
+    public function getSenha() { return $this->senha; }
+    public function setSenha($senha) {$this->senha = $senha;}
+
+    public function getTipo() { return $this->tipo; }
+    public function setTipo($tipo) {$this->tipo = $tipo;}
+
+    public function getNumCartao() { return $this->numCartao; }
+    public function setNumCartao($numCartao) {$this->numCartao = $numCartao;}
+
+    public function getCvvCartao() { return $this->cvvCartao; }
+    public function setCvvCartao($cvvCartao) {$this->cvvCartao = $cvvCartao;}
+
+    public function getTitularCartao() { return $this->titularCartao; }
+    public function setTitularCartao($titularCartao) {$this->titularCartao = $titularCartao;}
+
+    public function getValCartao() { return $this->valCartao; }
+    public function setValCartao($valCartao) {$this->valCartao = $valCartao;}
+
+    public function getCpf() { return $this->cpf; }
+    public function setCpf($cpf) {$this->cpf = $cpf;}
 }
 ?>
