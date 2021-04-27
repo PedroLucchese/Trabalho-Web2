@@ -60,21 +60,19 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
     public function altera(&$usuario) {
 
         $query = "UPDATE " . $this->table_name .
-        " SET NOME = :nome, EMAIL = :email, TELEFONE = :telefone, SENHA = :senha, NUM_CARTAO_CREDITO = :cartao, CVV_CARTAO = :cvv, NOME_TITULAR_CARTAO = :titular, DATA_VENCIMENTO_CARTAO = :validade, CPF = :cpf" .
+        " SET NOME = :nome, EMAIL = :email, TELEFONE = :telefone, SENHA = :senha, NUM_CARTAO_CREDITO = :cartao" .
         " WHERE ID_USUARIO = :id";
 
         $stmt = $this->conn->prepare($query);
 
         // bind parameters
+       
         $stmt->bindParam(":nome", $usuario->getNome());
-        $stmt->bindParam(":cpf", $usuario->getCpf());
         $stmt->bindParam(":email", $usuario->getEmail());
-        $stmt->bindParam(":senha", $usuario->getSenha());
         $stmt->bindParam(":telefone", $usuario->getTelefone());
-        $stmt->bindParam(":cartao", $usuario->getCartao());
-        $stmt->bindParam(":titular", $usuario->getTitular());
-        $stmt->bindParam(":cvv", $usuario->getCvv());
-        $stmt->bindParam(":validade", $usuario->getValidade());
+        $stmt->bindParam(":senha", $usuario->getSenha());
+        $stmt->bindParam(":cartao", $usuario->getNumCartao());
+        $stmt->bindParam(":id", $usuario->getId());
 
         // execute the query
         if($stmt->execute()){
