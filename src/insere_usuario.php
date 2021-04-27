@@ -1,49 +1,27 @@
 <?php
-// include_once "fachada.php";
+include_once "fachada.php";
 
-// Tentativa de conexão do servidor MySQL. Supondo que você esteja executando o MySQL
-$link = mysqli_connect("localhost", "root", "", "db_loja");
-
-// Check connection
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-
-$nome = mysqli_real_escape_string($link, $_REQUEST['cadastro_nome']);
-$cpf = mysqli_real_escape_string($link, $_REQUEST['cadastro_cpf']);
-$email = mysqli_real_escape_string($link, $_REQUEST ["cadastro_email"]);
-$senha = mysqli_real_escape_string($link, $_REQUEST["cadastro_senha"]);
-$telefone = mysqli_real_escape_string($link, $_REQUEST["cadastro_telefone"]);
-$numCartao =mysqli_real_escape_string($link, $_REQUEST["cadastro_cartao"]);
-$titularCartao = mysqli_real_escape_string($link, $_REQUEST["nome_titular"]);
-$cvvCartao = mysqli_real_escape_string($link, $_REQUEST["cadastro_cvv"]);
-$valCartao = mysqli_real_escape_string($link, $_REQUEST["data_vencimento"]);
+$nome = isset($_POST["cadastro_nome"]) ? addslashes(trim($_POST["cadastro_nome"])) : FALSE;
+$cpf = isset($_POST["cadastro_cpf"]) ? addslashes(trim($_POST["cadastro_cpf"])) : FALSE;
+$email = isset($_POST["cadastro_email"]) ? addslashes(trim($_POST["cadastro_email"])) : FALSE;
+$senha = isset($_POST["cadastro_senha"]) ? addslashes(trim($_POST["cadastro_senha"])) : FALSE;
+$telefone = isset($_POST["cadastro_telefone"]) ? addslashes(trim($_POST["cadastro_telefone"])) : FALSE;
+$numCartao = isset($_POST["cadastro_cartao"]) ? addslashes(trim($_POST["cadastro_cartao"])) : FALSE;
+$titularCartao = isset($_POST["nome_titular"]) ? addslashes(trim($_POST["nome_titular"])) : FALSE;
+$cvvCartao = isset($_POST["cadastro_cvv"]) ? addslashes(trim($_POST["cadastro_cvv"])) : FALSE;
+$valCartao = isset($_POST["data_vencimento"]) ? addslashes(trim($_POST["data_vencimento"])) : FALSE;
 $tipoUsuario = 1;
 
 if (empty($nome) || empty($cpf) || empty($email) || empty($senha) || empty($telefone) || empty($numCartao) || empty($titularCartao) || empty($cvvCartao) || empty($valCartao)){
-  echo "<script type=\"text/javascript\">alert('Voce nao preencheu todos os campos, verifique novamente!')</script>"; // <-- redirecionamento nao ta funcionando, ajeitar isto.
-  echo "<a href='/Trabalho-Web2/src/view/cria_conta.html'>Voltar ao cadastro</a>";
-  exit;
+    echo "<script type=\"text/javascript\">alert('Voce nao preencheu todos os campos, verifique novamente!')</script>";
+    exit;
 }
 
-$sql = "INSERT INTO cliente VALUES (
-                                        null,
-                                        '$nome',
-                                        '$email',
-                                        '$telefone',
-                                        '$senha',
-                                        '$tipoUsuario',
-                                        '$numCartao',
-                                        '$cvvCartao',
-                                        '$titularCartao',
-                                        '$valCartao',
-                                        '$cpf'
-                                    )";
-if(mysqli_query($link, $sql)){
-    echo "<script type=\"text/javascript\">alert('Cadastro realizado com sucesso')</script>"; 
-    echo "<a href='/Trabalho-Web2/src/view/index.html'>Volar a pagina principal</a>";
-} else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}
+$usuario = new Usuario(null, $nome, $cpf, $email, $senha, $telefone, $numCartao, $titularCartao, $cvvCartao, $valCartao, $tipoUsuario);
+$dao = $factory->getUsuarioDao();
+$dao->insere($usuario);
+
+header("/usuarios.php");
+exit;
 
 ?>
