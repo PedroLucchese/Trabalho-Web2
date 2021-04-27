@@ -63,6 +63,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
         $stmt->bindParam(":descricao", $fornecedor->getDescricao());
         $stmt->bindParam(":telefone", $fornecedor->getTelefone());
         $stmt->bindParam(":email", $fornecedor->getEmail());
+        $stmt->bindParam(':id', $fornecedor->getId());
 
         // execute the query
         if($stmt->execute()){

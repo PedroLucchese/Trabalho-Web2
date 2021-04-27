@@ -124,7 +124,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         return $produto;
     }
 
-    public function buscaPorDescricao($descricao) {
+    public function buscaPorCod($descricao) {
 
         $produto = null;
 
@@ -133,12 +133,12 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    PRODUTO_DESCRICAO CONTAINING(?)
+                    COD_PRODUTO CONTAINING(?)
                 LIMIT
                     1 OFFSET 0";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $descricao);
+        $stmt->bindParam(1, $codigo);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
