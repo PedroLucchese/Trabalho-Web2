@@ -16,16 +16,16 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
         $stmt = $this->conn->prepare($query);
 
         // bind values
-        $stmt->bindParam(":nome", $usuario->getNome());
-        $stmt->bindParam(":email", $usuario->getEmail());
-        $stmt->bindParam(":telefone", $usuario->getTelefone());
-        $stmt->bindParam(":senha", $usuario->getSenha());
-        $stmt->bindParam(":tipo", $usuario->getTipo());
-        $stmt->bindParam(":cartao", $usuario->getNumCartao());
-        $stmt->bindParam(":cvv", $usuario->getCvvCartao());
-        $stmt->bindParam(":titular", $usuario->getTitularCartao());
-        $stmt->bindParam(":validade", $usuario->getValCartao());
-        $stmt->bindParam(":cpf", $usuario->getCpf());
+        $stmt->bindValue(":nome", $usuario->getNome());
+        $stmt->bindValue(":email", $usuario->getEmail());
+        $stmt->bindValue(":telefone", $usuario->getTelefone());
+        $stmt->bindValue(":senha", $usuario->getSenha());
+        $stmt->bindValue(":tipo", $usuario->getTipo());
+        $stmt->bindValue(":cartao", $usuario->getNumCartao());
+        $stmt->bindValue(":cvv", $usuario->getCvvCartao());
+        $stmt->bindValue(":titular", $usuario->getTitularCartao());
+        $stmt->bindValue(":validade", $usuario->getValCartao());
+        $stmt->bindValue(":cpf", $usuario->getCpf());
         
 
         if($stmt->execute()){
@@ -43,7 +43,7 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
         $stmt = $this->conn->prepare($query);
 
         // bind parameters
-        $stmt->bindParam(':id', $id);
+        $stmt->bindValue(':id', $id);
 
         // execute the query
         if($stmt->execute()){
@@ -67,12 +67,12 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
 
         // bind parameters
        
-        $stmt->bindParam(":nome", $usuario->getNome());
-        $stmt->bindParam(":email", $usuario->getEmail());
-        $stmt->bindParam(":telefone", $usuario->getTelefone());
-        $stmt->bindParam(":senha", $usuario->getSenha());
-        $stmt->bindParam(":cartao", $usuario->getNumCartao());
-        $stmt->bindParam(":id", $usuario->getId());
+        $stmt->bindValue(":nome", $usuario->getNome());
+        $stmt->bindValue(":email", $usuario->getEmail());
+        $stmt->bindValue(":telefone", $usuario->getTelefone());
+        $stmt->bindValue(":senha", $usuario->getSenha());
+        $stmt->bindValue(":cartao", $usuario->getNumCartao());
+        $stmt->bindValue(":id", $usuario->getId());
 
         // execute the query
         if($stmt->execute()){
@@ -96,7 +96,7 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
                     1 OFFSET 0";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $id);
+        $stmt->bindValue(1, $id);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -121,7 +121,7 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
                     1 OFFSET 0";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $nome);
+        $stmt->bindValue(1, $nome);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -146,7 +146,7 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
                     1 OFFSET 0";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $email);
+        $stmt->bindValue(1, $email);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);

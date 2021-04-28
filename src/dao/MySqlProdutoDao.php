@@ -16,10 +16,10 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $stmt = $this->conn->prepare($query);
 
         // bind values
-        $stmt->bindParam(":nome", $produto->getNome());
-        $stmt->bindParam(":descricao", $produto->getDescricao());
-        $stmt->bindParam(":idFornecedor", $produto->getIdFornecedor());
-        $stmt->bindParam(":codigo", $produto->getCodProduto());
+        $stmt->bindValue(":nome", $produto->getNome());
+        $stmt->bindValue(":descricao", $produto->getDescricao());
+        $stmt->bindValue(":idFornecedor", $produto->getIdFornecedor());
+        $stmt->bindValue(":codigo", $produto->getCodProduto());
 
 
         if($stmt->execute()){
@@ -37,7 +37,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $stmt = $this->conn->prepare($query);
 
         // bind parameters
-        $stmt->bindParam(':id', $id);
+        $stmt->bindValue(':id', $id);
 
         // execute the query
         if($stmt->execute()){
@@ -60,11 +60,11 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $stmt = $this->conn->prepare($query);
 
         // bind parameters
-        $stmt->bindParam(":nome", $produto->getNome());
-        $stmt->bindParam(":descricao", $produto->getDescricao());
-        $stmt->bindParam(":idFornecedor", $produto->getIdFornecedor());
-        $stmt->bindParam(":codigo", $produto->getCodProduto());
-        $stmt->bindParam(':id', $produto->getId());
+        $stmt->bindValue(":nome", $produto->getNome());
+        $stmt->bindValue(":descricao", $produto->getDescricao());
+        $stmt->bindValue(":idFornecedor", $produto->getIdFornecedor());
+        $stmt->bindValue(":codigo", $produto->getCodProduto());
+        $stmt->bindValue(':id', $produto->getId());
 
         // execute the query
         if($stmt->execute()){
@@ -88,7 +88,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
                     1 OFFSET 0";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $id);
+        $stmt->bindValue(1, $id);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -113,7 +113,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
                     1 OFFSET 0";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $nome);
+        $stmt->bindValue(1, $nome);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -138,7 +138,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
                     1 OFFSET 0";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $codigo);
+        $stmt->bindValue(1, $codigo);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
