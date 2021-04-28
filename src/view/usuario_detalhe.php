@@ -97,22 +97,22 @@
                     <div class="user">
                         <div class="cad_user">
                             <div class="info_user">
-                            <div class="bxUser">
+                            <div class="ClassHtml">
                                     <input type="text" name="nome" id="nome" placeholder="Nome" value='<?php echo $usuario->getNome() ?>'>
                                 </div>
-                                <div class="bxUser">
+                                <div class="ClassHtml">
                                     <input type="text" name="telefone" id="telefone" placeholder="Telefone" value='<?php echo $usuario->getTelefone() ?>'>
                                 </div>
-                                <div class="bxUser">
+                                <div class="ClassHtml">
                                     <input type="text" name="email" id="email" placeholder="Email" value='<?php echo $usuario->getEmail() ?>'>
                                 </div>
-                                <div class="bxUser">
+                                <div class="ClassHtml">
                                     <input type="text" name="cartaoCredito" id="cartaoCredito" placeholder="Cartão de crédito" value='<?php echo $usuario->getNumCartao() ?>'>
                                 </div>
-                                <div class="bxUser">
+                                <div class="ClassHtml">
                                     <input type="password" name="senha" id="senha" placeholder="Senha" value='<?php echo $usuario->getSenha() ?>'>
                                 </div>
-                                <div class="bxUsers" style="padding-top: 10px">
+                                <div class="ClassHtmls" style="padding-top: 10px">
                                     <button style="background-color: red" type="button" onclick="document.location.href='../remove_usuario.php?id=<?php echo $usuarioId; ?>'">Excluir</button>
                                     <button type="submit">Salvar</button>
                                 </div>

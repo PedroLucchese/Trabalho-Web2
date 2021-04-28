@@ -97,16 +97,16 @@
                     <div class="user">
                         <div class="cad_user">
                             <div class="info_user">
-                            <div class="bxUser">
+                            <div class="ClassHtml">
                                     <input type="text" name="nome" id="nome" placeholder="Nome" value='<?php echo $produto->getNome() ?>'>
                                 </div>
-                                <div class="bxUser">
+                                <div class="ClassHtml">
                                     <input type="number" name="codigo" id="codigo" placeholder="codigo" value='<?php echo $produto->getCodProduto() ?>'>
                                 </div>
-                                <div class="bxUser">
+                                <div class="ClassHtml">
                                     <input type="text" name="descrição" id="descrição" placeholder="descrição" value='<?php echo $produto->getDescricao() ?>'>
                                 </div>
-                                <div class="bxUsers" style="padding-top: 10px">
+                                <div class="ClassHtmls" style="padding-top: 10px">
                                     <button style="background-color: red" type="button" onclick="document.location.href='./remove_produto.php?id=<?php echo $produtoId; ?>'">Excluir</button>
                                     <button type="submit">Salvar</button>
                                 </div>
