@@ -10,11 +10,11 @@ $numCartao = @$_POST["cartaoCredito"];
 
 
 
-$usuario = new Usuario($id, $nome, null, $email, $senha, $telefone, $numCartao, null, null, null, null);
+$usuario = new Usuario($id, $nome, $email, $telefone, $senha, null, $numCartao, null, null, null, null);
 $dao = $factory->getUsuarioDao();
 $dao->altera($usuario);
 
-header("Location: ../usuarios.php");
+header("Location: ./view/usuarios.php");
 exit;
 
 ?>
