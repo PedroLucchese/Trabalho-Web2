@@ -7,7 +7,7 @@ $descricao = @$_POST["descricao"];
 $codigo = @$_POST["codigo"];
 
 
-$produto = new Produto($id, $nome, $descricao, $codigo, null);
+$produto = new Produto($id, $nome, $descricao, null, $codigo);
 $dao = $factory->getProdutoDao();
 $dao->altera($produto);
 

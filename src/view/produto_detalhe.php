@@ -101,10 +101,10 @@
                                     <input type="text" name="nome" id="nome" placeholder="Nome" value='<?php echo $produto->getNome() ?>'>
                                 </div>
                                 <div class="ClassHtml">
-                                    <input type="number" name="codigo" id="codigo" placeholder="codigo" value='<?php echo $produto->getCodProduto() ?>'>
+                                    <input type="number" name="codigo" id="codigo" placeholder="código" value='<?php echo $produto->getCodProduto() ?>'>
                                 </div>
                                 <div class="ClassHtml">
-                                    <input type="text" name="descrição" id="descrição" placeholder="descrição" value='<?php echo $produto->getDescricao() ?>'>
+                                    <input type="text" name="descricao" id="descricao" placeholder="descrição" value='<?php echo $produto->getDescricao() ?>'>
                                 </div>
                                 <div class="ClassHtmls" style="padding-top: 10px">
                                     <button style="background-color: red" type="button" onclick="document.location.href='./remove_produto.php?id=<?php echo $produtoId; ?>'">Excluir</button>
