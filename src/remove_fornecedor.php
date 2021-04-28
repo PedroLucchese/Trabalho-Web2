@@ -7,7 +7,7 @@ $fornecedor = new Fornecedor($id, null, null, null, null);
 $dao = $factory->getFornecedorDao();
 $dao->removePorId($id);
 
-header("Location: ../fornecedor.php");
+header("Location: ./view/fornecedores.php");
 exit;
 
 ?>

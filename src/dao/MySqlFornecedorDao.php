@@ -85,7 +85,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
                     ID_FORNECEDOR = ?
                 LIMIT
                     1 OFFSET 0";
-
+        // echo $query;
         $stmt = $this->conn->prepare( $query );
         $stmt->bindValue(1, $id);
         $stmt->execute();
@@ -100,27 +100,24 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
 
     public function buscaPorNome($nome) {
 
-        $fornecedor = null;
+        $fornecedores = array();
 
         $query = "SELECT
                     ID_FORNECEDOR, NOME, DESCRICAO, TELEFONE, EMAIL
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    NOME CONTAINING(?)
-                LIMIT
-                    1 OFFSET 0";
+                    NOME LIKE '%{$nome}%'";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindValue(1, $nome);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($row) {
-            $fornecedor = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+            $fornecedores[] = new Fornecedor($row['ID_FORNECEDOR'],$row['NOME'], $row['DESCRICAO'], $row['TELEFONE'], $row['EMAIL']);
         }
 
-        return $fornecedor;
+        return $fornecedores;
     }
 
     public function buscaPorDescricao($descricao) {
