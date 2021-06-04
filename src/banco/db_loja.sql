@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 28-Abr-2021 às 01:46
+-- Tempo de geração: 04-Jun-2021 às 21:11
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -65,11 +65,11 @@ CREATE TABLE IF NOT EXISTS `endereco` (
 
 DROP TABLE IF EXISTS `estoque`;
 CREATE TABLE IF NOT EXISTS `estoque` (
-  `ID_PRODUTO` int(4) NOT NULL COMMENT 'ID PRODUTO TABELA PRODUTOS',
-  `QUANTIDADE` float NOT NULL COMMENT 'QUANTIDADE',
-  `PREÇO` float NOT NULL COMMENT 'PREÇO',
-  KEY `PRODUTO_ESTOQUE_FK` (`ID_PRODUTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela de estoques';
+  `idProduto` bigint(20) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `preco` double NOT NULL,
+  PRIMARY KEY (`idProduto`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -85,16 +85,14 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   `TELEFONE` varchar(11) NOT NULL COMMENT 'TELEFONE',
   `EMAIL` varchar(80) NOT NULL COMMENT 'EMAIL',
   PRIMARY KEY (`ID_FORNECEDOR`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COMMENT='TABELA DE FORNECEDORES';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='TABELA DE FORNECEDORES';
 
 --
 -- Extraindo dados da tabela `fornecedor`
 --
 
 INSERT INTO `fornecedor` (`ID_FORNECEDOR`, `NOME`, `DESCRICAO`, `TELEFONE`, `EMAIL`) VALUES
-(6, 'Pedro Henrique Lucchese', 'Fornecedor admin', '54999507127', 'pedro130300@gmail.com'),
-(8, 'Alexandre Lucchese', 'Fornecedor admin', '54999974761', 'alexandre.lucchese7@gmail.com'),
-(9, 'Casas bahia', 'Fornecedor de mÃ³veis', '54999507127', 'pedro130300@gmail.com');
+(11, 'Ponto', 'Departamento', '54999974761', 'ponto@gmail.co');
 
 -- --------------------------------------------------------
 
@@ -145,14 +143,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   PRIMARY KEY (`ID_PRODUTO`),
   UNIQUE KEY `COD_PRODUTO` (`COD_PRODUTO`),
   KEY `PRODUTO_FORNECEDOR_FK` (`ID_FORNECEDOR`)
-) ENGINE=InnoDB AUTO_INCREMENT=1016 DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `produto`
---
-
-INSERT INTO `produto` (`ID_PRODUTO`, `ID_FORNECEDOR`, `COD_PRODUTO`, `PRODUTO_DESCRICAO`, `NOME`) VALUES
-(1014, 8, 1, 'Cadeira preta', 'Cadeira');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -189,14 +180,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `CPF` varchar(11) NOT NULL,
   PRIMARY KEY (`ID_USUARIO`),
   UNIQUE KEY `EMAIL` (`EMAIL`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='TABELA DE CADASTRO DE CLIENTES E USUÁRIOS';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='TABELA DE CADASTRO DE CLIENTES E USUÁRIOS';
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`ID_USUARIO`, `NOME`, `EMAIL`, `TELEFONE`, `SENHA`, `TIPO_USUARIO`, `NUM_CARTAO_CREDITO`, `CVV_CARTAO`, `NOME_TITULAR_CARTAO`, `DATA_VENCIMENTO_CARTAO`, `CPF`) VALUES
-(6, 'Pedro Henrique Lucchese', 'pedro130300@gmail.com', '54999507127', 'senha', 1, '0000111122223333', 123, 'Pedro Henrique Lucchese', '2021-04-21', '04984717050');
+(1, 'Pedro Henrique Lucchese', 'pedro130300@gmail.com', '54999507127', 'senha', 1, '0000111122223333', 123, 'Pedro Henrique Lucchese', '2021-06-24', '04984717050');
 
 --
 -- Restrições para despejos de tabelas
@@ -214,12 +205,6 @@ ALTER TABLE `cidades`
 ALTER TABLE `endereco`
   ADD CONSTRAINT `endereco_cidade_fk` FOREIGN KEY (`ID_CIDADE`) REFERENCES `cidades` (`ID_CIDADE`),
   ADD CONSTRAINT `endereco_uf_fk` FOREIGN KEY (`ID_UF`) REFERENCES `uf` (`ID_UF`);
-
---
--- Limitadores para a tabela `estoque`
---
-ALTER TABLE `estoque`
-  ADD CONSTRAINT `PRODUTO_ESTOQUE_FK` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produto` (`ID_PRODUTO`);
 
 --
 -- Limitadores para a tabela `item_pedido`
