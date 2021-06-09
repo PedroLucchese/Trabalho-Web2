@@ -9,10 +9,10 @@ if ( is_session_started() === FALSE ) {
 error_log("LOGIN");
 
 // Verifica se existe os dados da sessão de login 
-if(!isset($_SESSION["ID_USUARIO"]) || !isset($_SESSION["NOME"])) 
+if(!isset($_SESSION["ID_USUARIO"]) || !isset($_SESSION["NOME"]) && $_SESSION["permissao"] != 2) 
 { 
-    error_log("SEM USUÀRIO LOGADO - Voltando para Login");
-    // Usuário não logado! Redireciona para a página de login.php
+    error_log("USUÁRIO NÃO É ADMINISTRADOR- Voltando para Login");
+    // Usuário administrador não logado!!
     header("Location: ./view/index.php");
     exit; 
 }

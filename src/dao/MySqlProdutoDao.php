@@ -10,8 +10,8 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
     public function insere($produto) {
 
         $query = "INSERT INTO " . $this->table_name .
-        " (NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO) VALUES" . //Adicionar foto = :foto na T2
-        " (:nome, :descricao, :idFornecedor, :codigo)";
+        " (NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem) VALUES" . //Adicionar foto = :foto na T2
+        " (:nome, :descricao, :idFornecedor, :codigo, :imagem)";
 
         $stmt = $this->conn->prepare($query);
 
@@ -20,6 +20,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $stmt->bindValue(":descricao", $produto->getDescricao());
         $stmt->bindValue(":idFornecedor", $produto->getIdFornecedor());
         $stmt->bindValue(":codigo", $produto->getCodProduto());
+        $stmt->bindValue(":imagem", $produto->getImgProduto());
 
 
         if($stmt->execute()){
@@ -79,7 +80,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $produto = null;
 
         $query = "SELECT
-                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO
+                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem
                 FROM
                     " . $this->table_name . "
                 WHERE
@@ -93,7 +94,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO']);
+            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO'], $row['imagem']);
         }
 
         return $produto;
@@ -104,7 +105,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $produto = null;
 
         $query = "SELECT
-                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO
+                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem
                 FROM
                     " . $this->table_name . "
                 WHERE
@@ -118,7 +119,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO']);
+            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO'], $row['imagem']);
         }
 
         return $produto;
@@ -129,7 +130,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $produto = null;
 
         $query = "SELECT
-                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO
+                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem
                 FROM
                     " . $this->table_name . "
                 WHERE
@@ -143,7 +144,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row) {
-            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO']);
+            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO'], $row['imagem']);
         }
 
         return $produto;
@@ -154,7 +155,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
         $produto = array();
 
         $query = "SELECT
-                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO
+                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem
                 FROM
                     " . $this->table_name .
                     " ORDER BY ID_PRODUTO ASC";
@@ -164,7 +165,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
-            $produto[] = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO']);
+            $produto[] = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO'], $row['imagem']);
         }
 
         return $produto;

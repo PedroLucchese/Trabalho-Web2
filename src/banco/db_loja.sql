@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 04-Jun-2021 às 21:11
+-- Tempo de geração: 09-Jun-2021 às 02:20
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -85,14 +85,14 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   `TELEFONE` varchar(11) NOT NULL COMMENT 'TELEFONE',
   `EMAIL` varchar(80) NOT NULL COMMENT 'EMAIL',
   PRIMARY KEY (`ID_FORNECEDOR`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='TABELA DE FORNECEDORES';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COMMENT='TABELA DE FORNECEDORES';
 
 --
 -- Extraindo dados da tabela `fornecedor`
 --
 
 INSERT INTO `fornecedor` (`ID_FORNECEDOR`, `NOME`, `DESCRICAO`, `TELEFONE`, `EMAIL`) VALUES
-(11, 'Ponto', 'Departamento', '54999974761', 'ponto@gmail.co');
+(12, 'Amazon', 'E-commerce', '54999507127', 'pedro130300@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -140,10 +140,18 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `COD_PRODUTO` int(4) NOT NULL,
   `PRODUTO_DESCRICAO` varchar(50) NOT NULL COMMENT 'DESCRICAO DO PRODUTO',
   `NOME` varchar(100) NOT NULL COMMENT 'Nome do Produto',
+  `imagem` varchar(300) NOT NULL,
   PRIMARY KEY (`ID_PRODUTO`),
   UNIQUE KEY `COD_PRODUTO` (`COD_PRODUTO`),
   KEY `PRODUTO_FORNECEDOR_FK` (`ID_FORNECEDOR`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `produto`
+--
+
+INSERT INTO `produto` (`ID_PRODUTO`, `ID_FORNECEDOR`, `COD_PRODUTO`, `PRODUTO_DESCRICAO`, `NOME`, `imagem`) VALUES
+(1, 12, 1234, 'Cadeira preta', 'Cadeira', '../uploads/Rhino.png');
 
 -- --------------------------------------------------------
 
@@ -187,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`ID_USUARIO`, `NOME`, `EMAIL`, `TELEFONE`, `SENHA`, `TIPO_USUARIO`, `NUM_CARTAO_CREDITO`, `CVV_CARTAO`, `NOME_TITULAR_CARTAO`, `DATA_VENCIMENTO_CARTAO`, `CPF`) VALUES
-(1, 'Pedro Henrique Lucchese', 'pedro130300@gmail.com', '54999507127', 'senha', 1, '0000111122223333', 123, 'Pedro Henrique Lucchese', '2021-06-24', '04984717050');
+(1, 'Pedro Henrique Lucchese', 'pedro130300@gmail.com', '54999507127', 'senha', 2, '0000111122223333', 123, 'Pedro Henrique Lucchese', '2021-06-24', '04984717050');
 
 --
 -- Restrições para despejos de tabelas

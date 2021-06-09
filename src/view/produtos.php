@@ -27,7 +27,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Submarino</a>
+      <a class="navbar-brand" href="index.php">Submarino</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -78,34 +78,42 @@
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
   </header>
-            <section class="main">
-                <h1>
-                    <i class="fas fa-user"></i>
-                    <br><span style = "margin-left: 50px">Produtos</span>
-                </h1>
-                <section>
+           
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Produtos</h2>
+          </div>
                 <form action="./produtos.php" method="POST">
-                    <div>
-                        <label style = "margin-left: 50px" for="txtBusca">Buscar:</label>
-                        <input id="txtBusca" name="txtBusca" type="text">
-                        <select id="tipoSel" name="tipoSel">
-                            <option value="id">Id</option>
-                            <option value="nome">Nome</option>
-                            <option value ="codigo">Codigo</option>
-                        </select>
-                        <button type="submit">Buscar</button>
-                    </div>
-                </form>
-                </section>
-                <section class="produtos">
-                    <table>
+                <div class="form-group">
+                  <label for="txtBusca">Buscar:</label>
+                  <input type="email" class="form-control form-control-user" id="txtBusca" name="txtBusca">
+            </div>
+            <div class="form-group">
+                  <select class="form-control form-control-user" id="tipoSel" name="tipoSel">
+                    <option value="id">Id</option>
+                    <option value="nome">Nome</option>
+                  </select>
+            </div>
+            <div class="text-center form-group" style="margin-left: -60px;">
+                  <button style="margin-left:47px" type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="row">
+          <table class="table">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th></th>
-                                <th>Nome</th>
-                                <th>Código</th>
-                                <th>Descrição</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Descrição</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -164,14 +172,12 @@
                                 }
                             }
                         ?>
-                        </tbody>
-                    </table>
-                </section>
-                
-            </section>
-        </main>
-        
-    </div>
+           </tbody>
+          </table>
+        </div>   
+      </div>
+    </div>        
+  </section>
     
   <!-- Footer -->
   <footer class="py-5 bg-black">

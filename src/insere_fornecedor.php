@@ -30,7 +30,7 @@ $sql = "INSERT INTO fornecedor VALUES (
 )";
 if(mysqli_query($link, $sql)){
     echo "<script type=\"text/javascript\">alert('Fornecedor cadastrado com sucesso')</script>"; 
-    echo "<a href='/Trabalho-Web2/src/view/index.html'>Volar a pagina principal</a>";
+    echo "<a href='/Trabalho-Web2/src/view/index.php'>Volar a pagina principal</a>";
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }

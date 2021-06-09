@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login</title>
+  <title>Cadastro Produto</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Submarino</a>
+      <a class="navbar-brand" href="index.php">Submarino</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -66,29 +66,33 @@
     <div class="bg-circle-4 bg-circle"></div>
   </header>
 
+
   <section>
     <div class="container">
-      <div class="row align-items-center">
+      <div class="row justify-content-center">
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
             <h2 class="display-4">Faça o cadastro do produto abaixo:</h2>
           </div>
-          <form action="../insere_produto.php" method="POST" role="form">
+          <form action="../insere_produto.php" method="POST" role="form" enctype="multipart/form-data"> 
             <div class="form-group">
-              <label style="margin-left:47px">Código do produto</label>
-              <input style="margin-left:47px" type="number" class="form-control" id="cod_produto" name="cod_produto">
+              <input type="number" class="form-control form-control-user" id="cod_produto" name="cod_produto" placeholder="Código do Produtp">
             </div>
             <div class="form-group">
-              <label style="margin-left:47px">Nome do produto</label>
-              <input style="margin-left:47px" type="text" class="form-control" id="nome_produto" name="nome_produto">
+              <input type="text" class="form-control form-control-user" id="nome_produto" name="nome_produto" placeholder="Nome do Produto">
             </div>
             <div class="form-group">
-              <label style="margin-left:47px">Descrição do produto</label>
-              <input style="margin-left:47px" type="text" class="form-control" id="desc_produto" name="desc_produto">
+              <input type="text" class="form-control form-control-user" id="desc_produto" name="desc_produto" placeholder="Descrição do Produto">
             </div>
             <div class="form-group">
-              <label style="margin-left:47px" for="Fornecedor">Selecione um fornecedor:</label>
-                                    <select  name="Fornecedor" id="Fornecedor">
+              <input type="file" class="form-control form-control-user" id="img_produto" name="img_produto" placeholder="Insira a imagem do Produto">
+              <label style="font-style: italic">
+                É recomendado enviar uma imagem de dimensões 1920x1080+
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="Fornecedor">Selecione um fornecedor:</label>
+                                    <select class="form-control form-control-user" name="Fornecedor" id="Fornecedor">
                                         <?php
                                             
                                             include_once "../fachada.php";
@@ -99,14 +103,15 @@
                                             if ($fornecedores)
                                             {
                                                 foreach ($fornecedores as $fornecedor)
-                                                {
+                                                { 
                                                     echo "<option value=\"" . $fornecedor->getId() . "\">" . $fornecedor->getNome() . "</option>";
                                                 }
                                             }
                                         ?>
                                     </select>
             </div>
-            <div class="form-group">
+            <hr>
+            <div class="text-center form-group" style="margin-left: -60px;">
               <button style="margin-left:47px" type="submit" class="btn btn-primary">Cadastrar</button>
               <button type="reset" class="btn btn-primary">Limpar</button>
             </div>
