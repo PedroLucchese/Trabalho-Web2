@@ -13,7 +13,7 @@ if(!isset($_SESSION["ID_USUARIO"]) || !isset($_SESSION["NOME"]) && $_SESSION["pe
 { 
     error_log("USUÁRIO NÃO É ADMINISTRADOR- Voltando para Login");
     // Usuário administrador não logado!!
-    header("Location: ./view/index.php");
+    header("Location: ./index.html");
     exit; 
 }
 ?>
