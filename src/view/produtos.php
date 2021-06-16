@@ -88,7 +88,7 @@
                 <form action="./produtos.php" method="POST">
                 <div class="form-group">
                   <label for="txtBusca">Buscar:</label>
-                  <input type="email" class="form-control form-control-user" id="txtBusca" name="txtBusca">
+                  <input type="text" class="form-control form-control-user" id="txtBusca" name="txtBusca">
             </div>
             <div class="form-group">
                   <select class="form-control form-control-user" id="tipoSel" name="tipoSel">
@@ -137,7 +137,7 @@
                             if (!empty($busca) && $tipoBusca == "id")
                             {
                                 $produto = $dao->buscaPorId($busca);
-                                if ($produtos)
+                                if ($produto)
                                 {
                                     $produtoId = $produto->getId();
                                     
@@ -152,7 +152,7 @@
                             }
                             else if (!empty($busca) && $tipoBusca == "nome")
                             {
-                                $produtos = $dao->buscaPorNome($busca, false);
+                                $produtos = $dao->buscaPorNome($busca);
                             }
 
                             if ($produtos)

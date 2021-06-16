@@ -88,34 +88,36 @@
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
   </header>
-            <section class="main">
-                <h1>
-                    <i class="fas fa-user-plus"></i>
-                    <span>Fornecedor</span>
-                </h1>
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Fornecedor</h2>
+          </div>
                 <form action="../altera_fornecedor.php?id=<?php echo $id; ?>" method="POST" role="form">
-                    <div class="user">
-                        <div class="cad_user">
-                            <div class="info_user">
-                            <div class="bxUser">
-                                    <input type="text" name="nome" id="nome" placeholder="Nome" value='<?php echo $fornecedor->getNome() ?>'>
-                                </div>
-                                <div class="bxUser">
-                                    <input type="text" name="descricao" id="descricao" placeholder="Descricao" value='<?php echo $fornecedor->getDescricao() ?>'>
-                                </div>
-                                <div class="bxUser">
-                                    <input type="text" name="telefone" id="telefone" placeholder="Telefone" value='<?php echo $fornecedor->getTelefone() ?>'>
-                                </div>
-                                <div class="bxUser">
-                                    <input type="text" name="email" id="email" placeholder="Email" value='<?php echo $fornecedor->getEmail() ?>'>
-                                </div>
-                                <div class="bxUsers" style="padding-top: 10px">
-                                    <button style="background-color: red" type="button" onclick="document.location.href='../remove_fornecedor.php?id=<?php echo $id; ?>'">Excluir</button>
-                                    <button type="submit">Salvar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                  <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="nome" id="nome" placeholder="Nome" value='<?php echo $fornecedor->getNome() ?>'>
+                  </div>
+                  <div class="form-group">
+                    <label>Descrição</label>
+                    <input type="text" name="descricao" id="descricao" placeholder="Descricao" value='<?php echo $fornecedor->getDescricao() ?>'>
+                  </div>
+                  <div class="form-group">
+                    <label>Telefone</label>
+                    <input type="text" name="telefone" id="telefone" placeholder="Telefone" value='<?php echo $fornecedor->getTelefone() ?>'>
+                  </div>
+                  <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="text" name="email" id="email" placeholder="Email" value='<?php echo $fornecedor->getEmail() ?>'>
+                  </div>
+                  <div class="text-center form-group" style="margin-left: -60px;">
+                    <button  type="button" class="btn btn-danger" onclick="document.location.href='../remove_fornecedor.php?id=<?php echo $id; ?>'">Excluir</button>
+                    <button type="reset" class="btn btn-primary">Limpar</button>
+                  </div>
+                         
                 </form>
             </section>
         </main>

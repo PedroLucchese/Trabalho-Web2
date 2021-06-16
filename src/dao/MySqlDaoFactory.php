@@ -4,6 +4,7 @@ include_once('DaoFactory.php');
 include_once('MySqlUsuarioDao.php');
 include_once('MySqlFornecedorDao.php');
 include_once('MySqlProdutoDao.php');
+include_once('MySqlEstoqueDao.php');
 
 class MySqlDaofactory extends DaoFactory {
 
@@ -39,6 +40,10 @@ class MySqlDaofactory extends DaoFactory {
 
     public function getProdutoDao() {
         return new MySqlProdutoDao($this->getConnection());
+    }
+
+    public function getEstoqueDao() {
+        return new MySqlEstoqueDao($this->getConnection());
     }
 }
 ?>

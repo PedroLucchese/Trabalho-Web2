@@ -89,7 +89,7 @@
           <form action="./fornecedores.php" method="POST">
             <div class="form-group">
                   <label for="txtBusca">Buscar:</label>
-                  <input type="email" class="form-control form-control-user" id="txtBusca" name="txtBusca">
+                  <input type="text" class="form-control form-control-user" id="txtBusca" name="txtBusca">
             </div>
             <div class="form-group">
                   <select class="form-control form-control-user" id="tipoSel" name="tipoSel">
@@ -107,6 +107,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="row">
+        <div class="table-responsive">
           <table class="table">
               <thead>
                   <tr>
@@ -178,6 +179,7 @@
               ?>
                </tbody>
           </table>
+         </div> 
         </div>   
       </div>
     </div>        

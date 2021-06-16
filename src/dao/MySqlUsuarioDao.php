@@ -109,27 +109,24 @@ class MySqlUsuarioDao extends MySqlDao implements UsuarioDao {
 
     public function buscaPorNome($nome) {
 
-        $usuario = null;
+        $usuarios = array();
 
         $query = "SELECT
-                    ID_USUARIO, NOME, EMAIL, TELEFONE, SENHA, TIPO_USUARIO, NUM_CARTAO_CREDITO, CVV_CARTAO, NOME_TITULAR_CARTAO, DATA_VENCIMENTO_CARTAO, CPF
+                     ID_USUARIO, NOME, EMAIL, TELEFONE, SENHA, TIPO_USUARIO, NUM_CARTAO_CREDITO, CVV_CARTAO, NOME_TITULAR_CARTAO, DATA_VENCIMENTO_CARTAO, CPF
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    NOME = ?
-                LIMIT
-                    1 OFFSET 0";
+                    NOME LIKE '%{$nome}%'";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindValue(1, $nome);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($row) {
-            $usuario = new Usuario($row['ID_USUARIO'],$row['NOME'], $row['EMAIL'], $row['TELEFONE'], $row['SENHA'], $row['TIPO_USUARIO'], $row['NUM_CARTAO_CREDITO'], $row['CVV_CARTAO'], $row['NOME_TITULAR_CARTAO'], $row['DATA_VENCIMENTO_CARTAO'], $row['CPF']);
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+            $usuarios[] = new Usuario($row['ID_USUARIO'],$row['NOME'], $row['EMAIL'], $row['TELEFONE'], $row['SENHA'], $row['TIPO_USUARIO'], $row['NUM_CARTAO_CREDITO'], $row['CVV_CARTAO'], $row['NOME_TITULAR_CARTAO'], $row['DATA_VENCIMENTO_CARTAO'], $row['CPF']);
         }
 
-        return $usuario;
+        return $usuarios;
     }
 
     public function buscaPorEmail($email) {

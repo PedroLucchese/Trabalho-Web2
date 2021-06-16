@@ -102,27 +102,24 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
     public function buscaPorNome($nome) {
 
-        $produto = null;
+        $produtos = array();
 
         $query = "SELECT
-                    ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem
+                     ID_PRODUTO, NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    NOME CONTAINING(?)
-                LIMIT
-                    1 OFFSET 0";
+                    NOME LIKE '%{$nome}%'";
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindValue(1, $nome);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($row) {
-            $produto = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO'], $row['imagem']);
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+            $produtos[] = new Produto($row['ID_PRODUTO'],$row['NOME'], $row['PRODUTO_DESCRICAO'], $row['ID_FORNECEDOR'], $row['COD_PRODUTO'], $row['imagem']);
         }
 
-        return $produto;
+        return $produtos;
     }
 
     public function buscaPorCod($descricao) {

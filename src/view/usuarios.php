@@ -89,7 +89,7 @@
           <form action="./usuarios.php" method="POST">
             <div class="form-group">
                 <label for="txtBusca">Buscar:</label>
-                <input type="email" class="form-control form-control-user" id="txtBusca" name="txtBusca">
+                <input type="text" class="form-control form-control-user" id="txtBusca" name="txtBusca">
             </div>
             <div class="form-group">
                 <select class="form-control form-control-user" id="tipoSel" name="tipoSel">
