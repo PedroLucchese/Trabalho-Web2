@@ -22,7 +22,7 @@ $tipoUsuario = 1;
 
 if (empty($nome) || empty($cpf) || empty($email) || empty($senha) || empty($telefone) || empty($numCartao) || empty($titularCartao) || empty($cvvCartao) || empty($valCartao)){
   echo "<script type=\"text/javascript\">alert('Voce nao preencheu todos os campos, verifique novamente!')</script>"; 
-  echo "<a href='/Trabalho-Web2/src/view/cria_conta.html'>Voltar ao cadastro</a>";
+  echo "<a href='/Trabalho-Web2/src/view/cria_conta.php'>Voltar ao cadastro</a>";
   exit;
 }
 

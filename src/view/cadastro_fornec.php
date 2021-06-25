@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Controle de Estoque</title>
+  <title>Fornecedor</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,35 +24,8 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.php">Submarino</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_conta.html">Contas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_prod.php">Cadastrar Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_fornec.html">Cadastrar Fornecedores</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manut_estoque.html">Consulta e manutenção</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<!-- Nav -->
+<?php include_once "navegacao.php" ?>
 
   <header class="masthead text-center text-white">
     <div class="masthead-content">
@@ -71,17 +44,20 @@
       <div class="row justify-content-center">
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4">Controle de estoque</h2>
+            <h2 class="display-4">Faça o cadastro do fornecedor abaixo:</h2>
           </div>
-          <form class="user" action="../controla_estoque.php" method="POST" role="form"> 
+          <form action="../insere_fornecedor.php" method="POST" role="form">
             <div class="form-group">
-              <input type="number" class="form-control form-control-user" id="txtIdProduto" name="txtIdProduto" placeholder="ID do Produto">
+              <input type="text" class="form-control form-control-user" id="fornec_nome" name="fornec_nome" placeholder="Nome do fornecedor">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="txtQtdProduto" name="txtQtdProduto" placeholder="Quantidade">
+              <input type="text" class="form-control form-control-user" id="fornec_desc" name="fornec_desc" placeholder="Descrição">
             </div>
             <div class="form-group">
-              <input type="number" class="form-control form-control-user" id="txtPrecoProduto" name="txtPrecoProduto" placeholder="Preço">
+              <input type="number" class="form-control form-control-user" id="fornec_tel" name="fornec_tel" placeholder="Telefone">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control form-control-user" id="fornec_email" name="fornec_email" placeholder="Endereço de email do fornecedor">
             </div>
             <hr>
             <div class="text-center form-group" style="margin-left: -60px;">

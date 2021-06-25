@@ -23,7 +23,7 @@ $estoque = new Estoque($idProduto, $preco, $quantidade);
 $dao = $factory->getEstoqueDao();
 $dao->salva($estoque);
 
-header("Location: ./view/controle_estoque.html");
+header("Location: ./view/controle_estoque.php");
 exit;
 
 ?>

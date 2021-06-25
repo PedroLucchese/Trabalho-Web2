@@ -24,49 +24,9 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.php">Submarino</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_conta.html">Contas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_prod.php">Cadastrar Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_fornec.html">Cadastrar Fornecedores</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manut_estoque.html">Consulta e manutenção</a>
-          </li>
-          <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                <span class="">Usuário Admin</span>
-                <img style="height: 30px;" class="img-profile rounded-circle"src="img/undraw_profile.svg">
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> 
-                    Sair <!-- Habilitar Logout aqui -->
-                </a>
-            </div>
-          </li>
-        </ul>
+<!-- Nav -->
+<?php include_once "navegacao.php" ?>
 
-        
-      </div>
-    </div>
-  </nav>
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">

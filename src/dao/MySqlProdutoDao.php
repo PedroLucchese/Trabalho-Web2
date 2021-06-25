@@ -10,7 +10,7 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
     public function insere($produto) {
 
         $query = "INSERT INTO " . $this->table_name .
-        " (NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem) VALUES" . //Adicionar foto = :foto na T2
+        " (NOME, PRODUTO_DESCRICAO, ID_FORNECEDOR, COD_PRODUTO, imagem) VALUES" . 
         " (:nome, :descricao, :idFornecedor, :codigo, :imagem)";
 
         $stmt = $this->conn->prepare($query);

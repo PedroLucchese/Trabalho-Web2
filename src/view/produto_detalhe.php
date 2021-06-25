@@ -48,16 +48,16 @@
             <a class="nav-link" href="login.html">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cadastro_conta.html">Contas</a>
+            <a class="nav-link" href="cadastro_conta.php">Contas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cadastro_prod.php">Cadastrar Produtos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cadastro_fornec.html">Cadastrar Fornecedores</a>
+            <a class="nav-link" href="cadastro_fornec.php">Cadastrar Fornecedores</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="manut_estoque.html">Consulta e manutenção</a>
+            <a class="nav-link" href="manut_estoque.php">Consulta e manutenção</a>
           </li>
           <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">

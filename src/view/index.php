@@ -24,49 +24,8 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.php">Submarino</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Login</a>
-            </li>
-            <?php
-              include_once "../verifica_adm.php";
-              if($_SESSION["permissao"] == 2){
-
-                echo"<li class=\"nav-item\">";
-                  echo"<a class=\"nav-link\" href=\"cadastro_conta.html\">Contas</a>";
-                echo"</li>";
-                  echo"<li class=\"nav-item\">";
-                  echo"<a class=\"nav-link\" href=\"cadastro_prod.php\">Cadastrar Produtos</a>";
-                  echo"</li>";
-                  echo"<li class=\"nav-item\">";
-                  echo"<a class=\"nav-link\" href=\"cadastro_fornec.html\">Cadastrar Fornecedores</a>";
-                  echo"</li>";
-                  echo"<li class=\"nav-item\">";
-                  echo"<a class=\"nav-link\" href=\"manut_estoque.html\">Consulta e manutenção</a>";
-                  echo"</li>";
-                  echo"<li class=\"nav-item dropdown no-arrow\">";
-                  echo"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"userDropdown\" role=\"button\" data-toggle=\"dropdown\">";
-                  echo"<span>Usuário Admin</span>";
-                  echo"<img style=\"height: 30px;\" class=\"img-profile rounded-circle\"src=\"img/undraw_profile.svg\">";
-                  echo"</a>";
-                  echo"</li>";
-              }
-            ?>
-            <form id="form_logout" action="../executa_logout.php" method="POST" role="form">
-              <a href="javascript:$('#form_logout').submit();" class="btn btn-primary btn-user btn-block">Deslogar</a>
-            </form> 
-      </div>
-    </div>
-  </nav>
+<!-- Nav -->
+<?php include_once "navegacao.php" ?>
 
   <header class="masthead text-center text-white">
     <div class="masthead-content">

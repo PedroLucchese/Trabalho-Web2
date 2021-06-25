@@ -30,7 +30,7 @@ if (move_uploaded_file($_FILES['img_produto']['tmp_name'], "./uploads/$nomeImage
     echo "Erro ao enviar arquivo!\n";
 }
 
-header("Location: ../estoque.php");
+header("Location: ./view/index.php");
 exit;
 
 ?>

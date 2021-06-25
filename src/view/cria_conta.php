@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Cadastro Produto</title>
+  <title>Cadastro</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,53 +39,44 @@
     <div class="bg-circle-4 bg-circle"></div>
   </header>
 
-
   <section>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4">Faça o cadastro do produto abaixo:</h2>
+            <h2 class="display-4">Faça o cadastro abaixo:</h2>
           </div>
-          <form action="../insere_produto.php" method="POST" role="form" enctype="multipart/form-data"> 
+          <form action="../insere_usuario.php" method="POST" role="form">
             <div class="form-group">
-              <input type="number" class="form-control form-control-user" id="cod_produto" name="cod_produto" placeholder="Código do Produtp">
+              <input type="text" class="form-control form-control-user" id="cadastro_nome" name="cadastro_nome" placeholder="Nome">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="nome_produto" name="nome_produto" placeholder="Nome do Produto">
+              <input type="email" class="form-control form-control-user" id="cadastro_email" name="cadastro_email" placeholder="E-mail">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control form-control-user" id="desc_produto" name="desc_produto" placeholder="Descrição do Produto">
+              <input type="password" class="form-control form-control-user" id="cadastro_senha" name="cadastro_senha" placeholder="Senha">
             </div>
             <div class="form-group">
-              <input type="file" class="form-control form-control-user" id="img_produto" name="img_produto" placeholder="Insira a imagem do Produto">
-              <label style="font-style: italic">
-                É recomendado enviar uma imagem de dimensões 1920x1080+
-              </label>
+              <input type="number" class="form-control form-control-user" id="cadastro_cpf" name="cadastro_cpf" placeholder="CPF">
             </div>
             <div class="form-group">
-              <label for="Fornecedor">Selecione um fornecedor:</label>
-                                    <select class="form-control form-control-user" name="Fornecedor" id="Fornecedor">
-                                        <?php
-                                            
-                                            include_once "../fachada.php";
-
-                                            $dao = $factory->getFornecedorDao();
-                                            $fornecedores = $dao->buscaTodos();
-
-                                            if ($fornecedores)
-                                            {
-                                                foreach ($fornecedores as $fornecedor)
-                                                { 
-                                                    echo "<option value=\"" . $fornecedor->getId() . "\">" . $fornecedor->getNome() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
+              <input type="text" class="form-control form-control-user" id="cadastro_telefone" name="cadastro_telefone" placeholder="Telefone">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="cadastro_cartao" name="cadastro_cartao" placeholder="Número do Cartao de Crédito">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="nome_titular" name="nome_titular" placeholder="Nome do Titular">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="cadastro_cvv" name="cadastro_cvv" placeholder="CVV">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" id="data_vencimento" name="data_vencimento" placeholder="Data de Vencimento">
             </div>
             <hr>
             <div class="text-center form-group" style="margin-left: -60px;">
-              <button style="margin-left:47px" type="submit" class="btn btn-primary">Cadastrar</button>
+              <button style="margin-left:47px" type="submit" class="btn btn-primary">Enviar</button>
               <button type="reset" class="btn btn-primary">Limpar</button>
             </div>
             <br>
