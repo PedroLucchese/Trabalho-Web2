@@ -1,6 +1,6 @@
 <?php
 
-include_once "../fachada.php";
+include_once "fachada.php";
 include_once "verifica.php";
 
 $acoes_permitidas = array('adicionar','excluir','aplicar-desconto','limpar-carrinho','cadastrar_produto');
@@ -15,7 +15,7 @@ function valida_acao_carrinho(string $acao): bool{
 }
 
 function adicionar_produto_carrinho(array $produto): bool{
-	if ( !existe_produto( (int)$produto['id']) ) {
+	if ( !existe_produto( (int)$produto['ID_PRODUTO']) ) {
 		$_SESSION['carrinho'][] = $produto;
 		return TRUE;
 	}
@@ -26,7 +26,7 @@ function excluir_produto_carrinho(int $id): bool{
 
 	if( isset($_SESSION['carrinho']) and count($_SESSION['carrinho']) >0 ){
 		foreach ($_SESSION['carrinho'] as $i => $item) {
-			if ($item['id'] == $id){
+			if ($item['ID_PRODUTO'] == $id){
 				unset($_SESSION['carrinho'][$i]);
 				return TRUE;
 			}
@@ -39,7 +39,7 @@ function existe_produto(int $id): bool{
 
 	if( isset($_SESSION['carrinho']) and count($_SESSION['carrinho']) >0 ){
 		foreach ($_SESSION['carrinho'] as $item) {
-			if ($item['id'] == $id){
+			if ($item['ID_PRODUTO'] == $id){
 				return TRUE;
 			}
 		}

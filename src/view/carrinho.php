@@ -59,11 +59,11 @@
 			   	foreach($carrinho as $item):
 			   	?>
 				<tr>
-					<td><img src=<?php $caminho = $item['foto'];echo ".$caminho";  ?>></td>
-					<td><h5><?php echo $item['nome']  ?></h5></td>
+					<td><img src=<?php echo $item['imagem'];?>></td>
+					<td><h5><?php echo $item['NOME']  ?></h5></td>
 					<td>R$ <?php echo $item['preco']; ?></td>
 					<td><?php echo $item['quantidade']; ?></td>
-					<td><a href="../controller/gerencia_carrinho.php?acao=excluir&id=<?php echo $item['id'];?>" class="btn btn-danger ">Excluir</a></td>
+					<td><a href="../organiza_carrinho.php?acao=excluir&id=<?php echo $item['ID_PRODUTO'];?>" class="btn btn-danger ">Excluir</a></td>
 				</tr>
 			  <?php endforeach; endif; ?>
 			</tbody>
@@ -83,7 +83,7 @@
 							Desconto: 
 						</td>
 						<td colspan="2">
-							<form action="../controller/gerencia_carrinho.php">
+							<form action="../organiza_carrinho.php">
 								<input type="hidden" value="aplicar-desconto" name="acao">
 								<input type="text" name="desconto" class="form-control">
 							</form>
@@ -92,7 +92,7 @@
 					<tr>
 						<td colspan="2" class="text-right">
 							<samp class="foat-left">
-								<a href="../controller/gerencia_carrinho.php?acao=limpar-carrinho">Limpar Carrinho</a>
+								<a href="../organiza_carrinho.php?acao=limpar-carrinho">Limpar Carrinho</a>
 							</samp>
 							Valor Final: 
 						</td>
@@ -104,7 +104,7 @@
 			<?php endif?>
 		</table>
 		<div class="col-md-10 col-lg-10" style="text-align: right"></div>
-		<a href="../controller/encerrar_pedido.php" class="btn btn-success" role="button">Encerrar pedido</button>
+		<a href="../encerra_pedido.php" class="btn btn-success" role="button">Encerrar pedido</button>
 	</div>
     </section>
     </main>

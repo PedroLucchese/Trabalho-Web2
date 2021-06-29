@@ -22,13 +22,13 @@
                 <i class="fas fa-bars"></i>
             </label>
             <?php
-			include "../verifica.php";
-            include_once "usuario_logado.php";
+			//include "../verifica.php";
+           // include_once "usuario_logado.php";
             ?>
         </header>
         <main>
             <?php
-                include_once "nav.php";
+               // include_once "nav.php";
             ?>
             <section class="main">
                 <h1>
@@ -39,7 +39,7 @@
                         <div class="cad_user">
                             <div class="info_user">
                             <?php
-                                echo "<form action=\"../controller/gerencia_carrinho.php?acao=adicionar&id=$idProduto\" method=\"POST\">"
+                                echo "<form action=\"../organiza_carrinho.php?acao=adicionar&id=$idProduto\" method=\"POST\">"
                             ?>
                                 <div class="bxUser">
                                     <input type="number" name="qtdProduto" id="qtdProduto" placeholder="Quantidade de produto">

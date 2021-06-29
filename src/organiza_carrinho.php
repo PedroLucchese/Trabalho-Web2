@@ -1,7 +1,7 @@
 <?php
 
-require_once('./funcoes_carrinho.php');
-require_once('../fachada.php');
+require_once('funcoes_carrinho.php');
+require_once('fachada.php');
 
 $acao = (isset($_GET['acao']))? $_GET['acao'] : $_POST['acao'];
 
@@ -20,12 +20,12 @@ if(valida_acao_carrinho($acao) ){
 				$qtdProduto = @$_POST['qtdProduto'];
                 $dao = $factory->getProdutoDao();
 
-				$produto = $dao->buscaPorIdParaCarrinho($id);
+				$produto = $dao->buscaParaCarrinho($id);
 				$_SESSION['quantidade_estoque'] = $produto['quantidade'];
 				$produto["quantidade"] = $qtdProduto;
 
 				adicionar_produto_carrinho($produto);
-				header('Location: ../view/carrinho.php');
+				header('Location: ./view/carrinho.php');
 				exit;
 			}
 		break;
@@ -34,19 +34,19 @@ if(valida_acao_carrinho($acao) ){
 				die("Parametro Invalido!");
 			}else{
 				excluir_produto_carrinho($id);
-				header('Location: ../view/carrinho.php');
+				header('Location: ./view/carrinho.php');
 				exit;
 			}
 		break;
 		case 'aplicar-desconto':
 			$desc = isset($_GET['desconto'])? (int)$_GET['desconto'] : 0;
 			$_SESSION['desconto'] = $desc;
-			header('Location: ../view/carrinho.php');
+			header('Location: ./view/carrinho.php');
 			exit; 	
 		break;
 		case 'limpar-carrinho':
 			limpar_carrinho();
-			header('Location: ../view/carrinho.php');
+			header('Location: ./view/carrinho.php');
 			exit; 
 		break;
 		case 'cadastrar_produto':

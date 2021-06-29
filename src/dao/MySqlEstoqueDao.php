@@ -28,5 +28,49 @@ class MySqlEstoqueDao extends MySqlDao implements EstoqueDao {
         }
 
     }
+
+    public function verificaEstoque($idProduto, $quantidade)
+    {
+        $query = "SELECT quantidade FROM " .
+        $this->table_name . " WHERE idProduto = :idProduto";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":idProduto", $idProduto);
+
+        if ($stmt->execute())
+        {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($row && $row["quantidade"] > $quantidade) 
+            {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function getQuantidade($idProduto)
+    {
+        $query = "SELECT quantidade FROM " .
+        $this->table_name . " WHERE ID_PRODUTO = :ID_PRODUTO";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":ID_PRODUTO", $idProduto);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row)
+        {
+            return $row['quantidade'];
+        } else {
+            return 0;
+        }
+    }
+
 }
 ?>

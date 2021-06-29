@@ -167,5 +167,22 @@ class MySqlProdutoDao extends MySqlDao implements ProdutoDao {
 
         return $produto;
     }
+
+
+    public function buscaParaCarrinho($id) {
+        
+        $query = "SELECT ID_PRODUTO, NOME, imagem, preco, quantidade
+                FROM " . $this->table_name . 
+                " LEFT JOIN estoque ON estoque.idProduto = produto.ID_PRODUTO WHERE produto.ID_PRODUTO = ?";
+
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+
 }
 ?>

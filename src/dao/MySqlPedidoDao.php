@@ -10,18 +10,22 @@ class MySqlPedidoDao extends MySqlDao implements PedidoDao {
     public function criaPedido($carrinho)
     {
         $numeroPedido = $this->getLastNumero();
-
+  
         foreach($carrinho as $item)
         {
-            $queryItemPedido = "INSERT INTO itempedido VALUES (:idProduto, :numeroPedido, :quantidade, :preco)";
-
+            $queryItemPedido = "INSERT INTO item_pedido VALUES (:ID_PRODUTO, :ID_PEDIDO, :QUANTIDADE, :PRECO)";
+            
             $stmtItemPedido = $this->conn->prepare($queryItemPedido);
 
-            $stmtItemPedido->bindValue(":idProduto", $item['id']);
-            $stmtItemPedido->bindValue(":numeroPedido", $numeroPedido);
-            $stmtItemPedido->bindValue(":quantidade", $item['quantidade']);
-            $stmtItemPedido->bindValue(":preco", $item['preco'] * $item['quantidade']);
-
+            $stmtItemPedido->bindValue(":ID_PRODUTO", $item['ID_PRODUTO']);
+            $stmtItemPedido->bindValue(":ID_PEDIDO", $numeroPedido);
+            $stmtItemPedido->bindValue(":QUANTIDADE", $item['quantidade']);
+            $stmtItemPedido->bindValue(":PRECO", $item['preco'] * $item['quantidade']);
+            error_log("ITEM: ".$item['ID_PRODUTO']);
+            error_log("ID_PEDIDIDO: ".$numeroPedido);
+            error_log("QUANTIDADE: ".$item['quantidade']);
+            error_log("PRECO: ".$item['preco']); 
+            error_log($queryItemPedido);
             if ($stmtItemPedido->execute()) {
                 continue;
             } else {
@@ -30,16 +34,17 @@ class MySqlPedidoDao extends MySqlDao implements PedidoDao {
         }
 
         $query = "INSERT INTO " . $this->table_name .
-                "(numero, datapedido, dataentrega, situacao) VALUES " .
-                "(:numero, :datapedido, :dataentrega, :situacao)";
+                "(numero,  DATA_EMISSAO, ID_USUARIO, DATA_ENTREGA, SITUACAO) VALUES " .
+                "(:numero, :DATA_EMISSAO, :ID_USUARIO, :DATA_ENTREGA, :situacao)";
 
         $stmt = $this->conn->prepare($query);
 
         $date = date("Y-m-d");
 
         $stmt->bindValue(":numero", $numeroPedido);
-        $stmt->bindValue(":datapedido", $date);
-        $stmt->bindValue(":dataentrega", date("Y-m-d", strtotime($date . ' + 7 days ')));
+        $stmt->bindValue(":DATA_EMISSAO", $date);
+        $stmt->bindValue(":ID_USUARIO", $_SESSION['ID_USUARIO']);
+        $stmt->bindValue(":DATA_ENTREGA", date("Y-m-d", strtotime($date . ' + 30 days ')));
         $stmt->bindValue(":situacao", "Novo");
 
         if($stmt->execute()){

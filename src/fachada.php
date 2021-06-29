@@ -10,6 +10,7 @@ include_once('dao/ProdutoDao.php');
 include_once('dao/EstoqueDao.php');
 include_once('dao/DaoFactory.php');
 include_once('dao/MySqlDaoFactory.php');
+include_once('dao/PedidoDao.php');
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
