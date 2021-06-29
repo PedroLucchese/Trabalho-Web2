@@ -30,10 +30,8 @@ echo"<nav class=\"navbar navbar-expand-lg navbar-dark navbar-custom fixed-top\">
                 echo"<li class=\"nav-item\">";
                 echo"<a class=\"nav-link\" href=\"manut_estoque.php\">Consulta e manutenção</a>";
                 echo"</li>";
-                echo"<li class=\"nav-item dropdown no-arrow\">";
-                echo"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"userDropdown\" role=\"button\" data-toggle=\"dropdown\">";
-                echo"<span>Usuário Admin</span>";
-                echo"</a>";
+                echo"<li class=\"nav-item\">";
+                echo"<a class=\"nav-link\" href=\"carrinho.php\">Carrinho</a>";
                 echo"</li>";
             }
           echo"</ul>";

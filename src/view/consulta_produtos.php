@@ -70,7 +70,6 @@
                         <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Código</th>
                                 <th scope="col">Descrição</th>

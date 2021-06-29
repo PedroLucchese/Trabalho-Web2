@@ -22,7 +22,7 @@ class MySqlPedidoDao extends MySqlDao implements PedidoDao {
             $stmtItemPedido->bindValue(":QUANTIDADE", $item['quantidade']);
             $stmtItemPedido->bindValue(":PRECO", $item['preco'] * $item['quantidade']);
             error_log("ITEM: ".$item['ID_PRODUTO']);
-            error_log("ID_PEDIDIDO: ".$numeroPedido);
+            error_log("ID_PEDIDO: ".$numeroPedido);
             error_log("QUANTIDADE: ".$item['quantidade']);
             error_log("PRECO: ".$item['preco']); 
             error_log($queryItemPedido);
