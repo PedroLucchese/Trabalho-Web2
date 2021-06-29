@@ -91,7 +91,7 @@
 			   	foreach($carrinho as $item):
 			   	?>
 				<tr>
-					<td><img style="width: 50px;" src=<?php echo $item['imagem'];?>></td>
+					<td><img style="width: 100px;" src=<?php echo $item['imagem'];?>></td>
 					<td><h5><?php echo $item['NOME']  ?></h5></td>
 					<td>R$ <?php echo $item['preco']; ?></td>
 					<td><?php echo $item['quantidade']; ?></td>

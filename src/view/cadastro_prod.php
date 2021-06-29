@@ -49,7 +49,7 @@
           </div>
           <form action="../insere_produto.php" method="POST" role="form" enctype="multipart/form-data"> 
             <div class="form-group">
-              <input type="number" class="form-control form-control-user" id="cod_produto" name="cod_produto" placeholder="Código do Produtp">
+              <input type="number" class="form-control form-control-user" id="cod_produto" name="cod_produto" placeholder="Código do Produto">
             </div>
             <div class="form-group">
               <input type="text" class="form-control form-control-user" id="nome_produto" name="nome_produto" placeholder="Nome do Produto">

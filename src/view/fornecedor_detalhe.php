@@ -20,7 +20,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Usuário</title>
+    <title>Fornecedor</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,49 +34,10 @@
 
 </head>
 <body> 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.php">Submarino</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_conta.php">Contas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_prod.php">Cadastrar Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro_fornec.php">Cadastrar Fornecedores</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manut_estoque.php">Consulta e manutenção</a>
-          </li>
-          <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                <span class="">Usuário Admin</span>
-                <img style="height: 30px;" class="img-profile rounded-circle"src="img/undraw_profile.svg">
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> 
-                    Sair <!-- Habilitar Logout aqui -->
-                </a>
-            </div>
-          </li>
-        </ul>
 
-        
-      </div>
-    </div>
-  </nav>
+<!-- Nav -->
+<?php include_once "navegacao.php" ?>
+
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
@@ -114,6 +75,7 @@
                     <input type="text" name="email" id="email" placeholder="Email" value='<?php echo $fornecedor->getEmail() ?>'>
                   </div>
                   <div class="text-center form-group" style="margin-left: -60px;">
+                    <button  type="submit" class="btn btn-success">Alterar</button>
                     <button  type="button" class="btn btn-danger" onclick="document.location.href='../remove_fornecedor.php?id=<?php echo $id; ?>'">Excluir</button>
                     <button type="reset" class="btn btn-primary">Limpar</button>
                   </div>

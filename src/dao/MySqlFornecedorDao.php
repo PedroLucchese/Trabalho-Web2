@@ -71,6 +71,7 @@ class MySqlFornecedorDao extends MySqlDao implements FornecedorDao {
         }
 
         return false;
+
     }
 
     public function buscaPorId($id) {
