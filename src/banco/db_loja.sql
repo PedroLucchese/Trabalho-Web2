@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 09-Jun-2021 às 02:20
+-- Tempo de geração: 29-Jun-2021 às 16:52
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_loja`
 --
+CREATE DATABASE IF NOT EXISTS `db_loja` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `db_loja`;
 
 -- --------------------------------------------------------
 
@@ -34,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `cidades` (
   `ID_UF` int(2) NOT NULL,
   PRIMARY KEY (`ID_CIDADE`),
   KEY `cidades_FK` (`ID_UF`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -71,6 +73,14 @@ CREATE TABLE IF NOT EXISTS `estoque` (
   PRIMARY KEY (`idProduto`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `estoque`
+--
+
+INSERT INTO `estoque` (`idProduto`, `quantidade`, `preco`) VALUES
+(1, 20, 40),
+(2, 3, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -104,11 +114,23 @@ DROP TABLE IF EXISTS `item_pedido`;
 CREATE TABLE IF NOT EXISTS `item_pedido` (
   `ID_PRODUTO` int(4) NOT NULL COMMENT 'ID PRODUTO TABELA DE PRODUTOS',
   `ID_PEDIDO` int(4) NOT NULL COMMENT 'ID_PEDIDO TABELA DE PEDIDOS',
-  `QUANTIDADE` float NOT NULL COMMENT 'QUANTIDADE',
-  `PREÇO` float NOT NULL,
+  `QUANTIDADE` int(11) NOT NULL COMMENT 'QUANTIDADE',
+  `PRECO` float NOT NULL,
   KEY `ITEMPEDIDO_PRODUTO_FK` (`ID_PRODUTO`),
   KEY `ITEMPEDIDO_PEDIDO_FK` (`ID_PEDIDO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='TABELA DE ITENS DO PEDIDO';
+
+--
+-- Extraindo dados da tabela `item_pedido`
+--
+
+INSERT INTO `item_pedido` (`ID_PRODUTO`, `ID_PEDIDO`, `QUANTIDADE`, `PRECO`) VALUES
+(2, 1, 2, 40),
+(1, 1, 10, 400),
+(2, 1, 2, 40),
+(2, 1, 1, 20),
+(2, 1, 1, 20),
+(2, 2, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -118,14 +140,22 @@ CREATE TABLE IF NOT EXISTS `item_pedido` (
 
 DROP TABLE IF EXISTS `pedido`;
 CREATE TABLE IF NOT EXISTS `pedido` (
-  `ID_PEDIDO` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ID PEDIDO',
+  `numero` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ID PEDIDO',
   `ID_USUARIO` int(4) NOT NULL COMMENT 'ID CLIENTE TABELA DE CLIENTES',
   `DATA_EMISSAO` date NOT NULL COMMENT 'DATA EMISSAO PEDIDO',
   `DATA_ENTREGA` date NOT NULL COMMENT 'DATA EMISSAO PEDIDO',
-  `SITUACAO` int(11) NOT NULL COMMENT 'SITUACAO PEDIDO (1 - PENDENTE , 2 - ENVIADO , 3 - CANCELADO )',
-  PRIMARY KEY (`ID_PEDIDO`),
-  KEY `PEDIDO_CLIENTE_FK` (`ID_USUARIO`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `SITUACAO` varchar(20) NOT NULL COMMENT 'SITUACAO PEDIDO (1 - PENDENTE , 2 - ENVIADO , 3 - CANCELADO )',
+  PRIMARY KEY (`numero`),
+  KEY `PEDIDO_CLIENTE_FK` (`numero`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `pedido`
+--
+
+INSERT INTO `pedido` (`numero`, `ID_USUARIO`, `DATA_EMISSAO`, `DATA_ENTREGA`, `SITUACAO`) VALUES
+(1, 1, '2021-06-29', '2021-07-29', 'Novo'),
+(2, 1, '2021-06-29', '2021-07-29', 'Novo');
 
 -- --------------------------------------------------------
 
@@ -144,14 +174,15 @@ CREATE TABLE IF NOT EXISTS `produto` (
   PRIMARY KEY (`ID_PRODUTO`),
   UNIQUE KEY `COD_PRODUTO` (`COD_PRODUTO`),
   KEY `PRODUTO_FORNECEDOR_FK` (`ID_FORNECEDOR`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `produto`
 --
 
 INSERT INTO `produto` (`ID_PRODUTO`, `ID_FORNECEDOR`, `COD_PRODUTO`, `PRODUTO_DESCRICAO`, `NOME`, `imagem`) VALUES
-(1, 12, 1234, 'Cadeira preta', 'Cadeira', '../uploads/Rhino.png');
+(1, 12, 1234, 'Cadeira preta', 'Cadeira', '../uploads/Rhino.png'),
+(2, 12, 1088, 'Chaveiro dos Guri', 'Chaveiro', '../uploads/1283728.jpg');
 
 -- --------------------------------------------------------
 
@@ -200,32 +231,6 @@ INSERT INTO `usuario` (`ID_USUARIO`, `NOME`, `EMAIL`, `TELEFONE`, `SENHA`, `TIPO
 --
 -- Restrições para despejos de tabelas
 --
-
---
--- Limitadores para a tabela `cidades`
---
-ALTER TABLE `cidades`
-  ADD CONSTRAINT `cidades_FK` FOREIGN KEY (`ID_UF`) REFERENCES `uf` (`ID_UF`);
-
---
--- Limitadores para a tabela `endereco`
---
-ALTER TABLE `endereco`
-  ADD CONSTRAINT `endereco_cidade_fk` FOREIGN KEY (`ID_CIDADE`) REFERENCES `cidades` (`ID_CIDADE`),
-  ADD CONSTRAINT `endereco_uf_fk` FOREIGN KEY (`ID_UF`) REFERENCES `uf` (`ID_UF`);
-
---
--- Limitadores para a tabela `item_pedido`
---
-ALTER TABLE `item_pedido`
-  ADD CONSTRAINT `ITEMPEDIDO_PEDIDO_FK` FOREIGN KEY (`ID_PEDIDO`) REFERENCES `pedido` (`ID_PEDIDO`),
-  ADD CONSTRAINT `ITEMPEDIDO_PRODUTO_FK` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produto` (`ID_PRODUTO`);
-
---
--- Limitadores para a tabela `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `PEDIDO_CLIENTE_FK` FOREIGN KEY (`ID_USUARIO`) REFERENCES `usuario` (`ID_USUARIO`);
 
 --
 -- Limitadores para a tabela `produto`
