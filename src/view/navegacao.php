@@ -33,7 +33,6 @@ echo"<nav class=\"navbar navbar-expand-lg navbar-dark navbar-custom fixed-top\">
                 echo"<li class=\"nav-item dropdown no-arrow\">";
                 echo"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"userDropdown\" role=\"button\" data-toggle=\"dropdown\">";
                 echo"<span>Usuário Admin</span>";
-                echo"<img style=\"height: 30px;\" class=\"img-profile rounded-circle\"src=\"img/undraw_profile.svg\">";
                 echo"</a>";
                 echo"</li>";
             }

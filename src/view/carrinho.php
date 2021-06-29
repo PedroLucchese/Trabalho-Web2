@@ -26,12 +26,11 @@
         <?php
 			include "../verifica.php";
 			include_once "../fachada.php";
+			include_once "navegacao.php" 
+
         ?>
     </header>
     <main>
-        <?php
-            include_once "navegacao.php";
-        ?>
         <section class="main">
 		</br>
 		<a href="consulta_produtos.php" class="btn btn-warning" role="button">Produtos</a>
