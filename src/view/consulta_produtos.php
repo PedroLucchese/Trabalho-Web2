@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Home</title>
+  <title>Produtos</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -73,6 +73,7 @@
                                 <th scope="col">Nome</th>
                                 <th scope="col">Código</th>
                                 <th scope="col">Descrição</th>
+                                <th scope="col">Quantidade</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,6 +105,7 @@
                                     echo "<td><a href=./consulta_quantidade.php?idProduto=$produtoId><span>Adicionar</span></a></td>";
                                     echo "<td>" . $produto->getNome() . "</td>";
                                     echo "<td>" . $produto->getCodProduto() . "</td>";
+                                    echo "<td>" . $produto->getDescricao() . "</td>";
                                     echo "<td>" . $produto->getDescricao() . "</td>";
                                     echo "</tr>";
                                 }

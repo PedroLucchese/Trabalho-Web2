@@ -1,0 +1,3 @@
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^pedido/?$ pedido.php [NC,L]
+RewriteRule ^pedido/([0-9]+)/?$ pedido.php?id=$1 [NC,L]

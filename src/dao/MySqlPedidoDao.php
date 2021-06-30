@@ -68,5 +68,66 @@ class MySqlPedidoDao extends MySqlDao implements PedidoDao {
             return 0;
         }
     }
+	
+	    public function buscaTodos()
+    {
+        $pedidos = array();
+
+        $query = "select numero, DATA_EMISSAO, DATA_ENTREGA, situacao " .
+        "from pedido ";
+     
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        error_log("---> QUERY = " . $query);
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+            $pedidos[] = new Pedido($numero, $DATA_EMISSAO, $DATA_ENTREGA, $situacao);
+        }
+        
+        return $pedidos;
+    }
+	
+	public function buscaPorId($numeroPedido)
+    {
+        $pedido = null;
+
+        $query = "select numero, DATA_EMISSAO, DATA_ENTREGA, situacao " .
+        "from pedido " .
+        "where numero = ? " .
+        "LIMIT 1 OFFSET 0";
+     
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $numero);
+        $stmt->execute();
+     
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($row) {
+            $pedido = new Pedido($row['numero'], $row['DATA_EMISSAO'], $row['DATA_ENTREGA'], $row['situacao']);
+            return $pedido;
+        } 
+        return null;
+    }
+	
+	    public function buscaPedidosJSON()
+    {
+        $pedidos = $this->buscaTodos();
+        $pedidosJSON = array();
+        foreach ($pedidos as $pedido) {
+            $pedidosJSON[] = $pedido->getDadosParaJSON();
+        }
+        return stripslashes(json_encode($pedidosJSON,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
+
+    public function buscaPedidoJSON($numeroPedido)
+    {
+        $pedido = $this->buscaPorId($numeroPedido);
+        if($pedido!=null) {
+            return stripslashes(json_encode($pedido->getDadosParaJSON(),JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        } else {
+            return null;
+        }
+    }
 }
 ?>

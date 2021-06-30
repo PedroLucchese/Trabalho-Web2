@@ -31,9 +31,14 @@ echo"<nav class=\"navbar navbar-expand-lg navbar-dark navbar-custom fixed-top\">
                 echo"<a class=\"nav-link\" href=\"manut_estoque.php\">Consulta e manutenção</a>";
                 echo"</li>";
                 echo"<li class=\"nav-item\">";
-                echo"<a class=\"nav-link\" href=\"carrinho.php\">Carrinho</a>";
+                echo"<a class=\"nav-link\" href=\"pedidos.php\">Pedidos
+                </a>";
                 echo"</li>";
             }
+          echo"<li class=\"nav-item\">";
+              echo"<a class=\"nav-link\" href=\"carrinho.php\">Carrinho</a>";
+          echo"</li>";
+
           echo"</ul>";
           $usuario_logado = $_SESSION["NOME"];
           echo $usuario_logado;

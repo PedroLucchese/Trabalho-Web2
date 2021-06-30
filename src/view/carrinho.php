@@ -137,7 +137,7 @@
 		</table>
 		
 		<div class="row justify-content-center">
-			<button href="../encerra_pedido.php" class="btn btn-success">Encerrar pedido</button>
+			<a href="../encerra_pedido.php" class="btn btn-success" role="button">Encerrar pedido</a>		
 		</div>
 		<br>
 	

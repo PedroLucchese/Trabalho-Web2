@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 29-Jun-2021 às 16:52
+-- Tempo de geração: 29-Jun-2021 às 23:57
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_loja`
 --
-CREATE DATABASE IF NOT EXISTS `db_loja` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `db_loja`;
 
 -- --------------------------------------------------------
 
@@ -79,7 +77,8 @@ CREATE TABLE IF NOT EXISTS `estoque` (
 
 INSERT INTO `estoque` (`idProduto`, `quantidade`, `preco`) VALUES
 (1, 20, 40),
-(2, 3, 20);
+(2, 3, 20),
+(6, 10, 1200);
 
 -- --------------------------------------------------------
 
@@ -95,14 +94,15 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   `TELEFONE` varchar(11) NOT NULL COMMENT 'TELEFONE',
   `EMAIL` varchar(80) NOT NULL COMMENT 'EMAIL',
   PRIMARY KEY (`ID_FORNECEDOR`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COMMENT='TABELA DE FORNECEDORES';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='TABELA DE FORNECEDORES';
 
 --
 -- Extraindo dados da tabela `fornecedor`
 --
 
 INSERT INTO `fornecedor` (`ID_FORNECEDOR`, `NOME`, `DESCRICAO`, `TELEFONE`, `EMAIL`) VALUES
-(12, 'Amazon', 'E-commerce', '54999507127', 'pedro130300@gmail.com');
+(12, 'Amazon', 'E-commerce', '54999507127', 'pedro130300@gmail.com'),
+(13, 'Ponto Frio', 'E-commerce', '5499999927', 'vendas@pontofrio.com');
 
 -- --------------------------------------------------------
 
@@ -168,21 +168,22 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `ID_PRODUTO` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ID PRODUTO',
   `ID_FORNECEDOR` int(4) DEFAULT NULL COMMENT 'ID DO FORNECEDOR TABELA DE FORNECEDORES',
   `COD_PRODUTO` int(4) NOT NULL,
-  `PRODUTO_DESCRICAO` varchar(50) NOT NULL COMMENT 'DESCRICAO DO PRODUTO',
+  `PRODUTO_DESCRICAO` varchar(450) NOT NULL COMMENT 'DESCRICAO DO PRODUTO',
   `NOME` varchar(100) NOT NULL COMMENT 'Nome do Produto',
   `imagem` varchar(300) NOT NULL,
   PRIMARY KEY (`ID_PRODUTO`),
   UNIQUE KEY `COD_PRODUTO` (`COD_PRODUTO`),
   KEY `PRODUTO_FORNECEDOR_FK` (`ID_FORNECEDOR`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `produto`
 --
 
 INSERT INTO `produto` (`ID_PRODUTO`, `ID_FORNECEDOR`, `COD_PRODUTO`, `PRODUTO_DESCRICAO`, `NOME`, `imagem`) VALUES
-(1, 12, 1234, 'Cadeira preta', 'Cadeira', '../uploads/Rhino.png'),
-(2, 12, 1088, 'Chaveiro dos Guri', 'Chaveiro', '../uploads/1283728.jpg');
+(5, 12, 1234, 'ConheÃ§a o liquidificador da Mondial L-99 WB Turbo Power. AlÃ©m de moderno e elegante na linda cor preta, ele conta com um novo sistema de encaixe pra deixar a montagem mais prÃ¡tica e fÃ¡cil.', 'Liquidificador Mondial Turbo Power', '../uploads/liquidificador.jpg'),
+(6, 12, 2345, 'A nova linha de Cadeira Gamer Mymax, sÃ£o as mais iradas do mercado, a MX5 possui design ergonÃ´mico e revestimento em couro. Projetada para proporcionar conforto mesmo apÃ³s horas jogando.', 'Cadeira Gamer MX5 Giratoria', '../uploads/cadeira.jpg'),
+(7, 13, 3456, 'Muito mais potÃªncia para melhor resultado de suas receitas do dia a dia. Tigela grande de 3, 6 l: Prepara receitas com grande quantidade de ingredientes.', 'Batedeira PrÃ¡tica 350W, 127V, Preta, Mondial - B-12-NP', '../uploads/batedeira.jpg');
 
 -- --------------------------------------------------------
 
@@ -219,14 +220,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `CPF` varchar(11) NOT NULL,
   PRIMARY KEY (`ID_USUARIO`),
   UNIQUE KEY `EMAIL` (`EMAIL`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='TABELA DE CADASTRO DE CLIENTES E USUÁRIOS';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='TABELA DE CADASTRO DE CLIENTES E USUÁRIOS';
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`ID_USUARIO`, `NOME`, `EMAIL`, `TELEFONE`, `SENHA`, `TIPO_USUARIO`, `NUM_CARTAO_CREDITO`, `CVV_CARTAO`, `NOME_TITULAR_CARTAO`, `DATA_VENCIMENTO_CARTAO`, `CPF`) VALUES
-(1, 'Pedro Henrique Lucchese', 'pedro130300@gmail.com', '54999507127', 'senha', 2, '0000111122223333', 123, 'Pedro Henrique Lucchese', '2021-06-24', '04984717050');
+(3, 'TesteADM', 'TesteADM@teste.com', '54999999990', 'senha', 2, '0000000000000001', 123, 'Administrador', '2021-06-24', '12341234123'),
+(4, 'TesteCLIENTE', 'TesteCLIENTE@teste.com', '54999999991', 'senhas', 1, '0000000000000002', 321, 'Cliente', '2021-04-21', '23423423423');
 
 --
 -- Restrições para despejos de tabelas

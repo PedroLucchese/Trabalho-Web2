@@ -45,7 +45,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/liquidificador.jpg" alt="">
+            <img class="img-fluid rounded-circle" src="../uploads/liquidificador.jpg" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
@@ -63,7 +63,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/cadeira.jpg" alt="">
+            <img class="img-fluid rounded-circle" src="../uploads/cadeira.jpg" alt="">
           </div>
         </div>
         <div class="col-lg-6">
@@ -82,13 +82,13 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/batedeira.jpg" alt="">
+            <img class="img-fluid rounded-circle" src="../uploads/batedeira.jpg" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
             <h2 class="display-4">Batedeira Prática 350W, 127V, Preta, Mondial - B-12-NP</h2>
-            <p>350W de potência: Muito mais potência para melhor resultado de suas receitas do dia a dia. Tigela grande de 3, 6 l: Prepara receitas com grande quantidade de ingredientes.</p>
+            <p>Muito mais potência para melhor resultado de suas receitas do dia a dia. Tigela grande de 3, 6 l: Prepara receitas com grande quantidade de ingredientes.</p>
           </div>
         </div>
       </div>
